@@ -29,7 +29,7 @@ function SignupForm() {
 
   return (
     <div className="grid place-items-center p-8 h-screen form-container">
-      <div className="grid place-items-center">
+      <div className="grid space-y-4 place-items-center">
         <h1 className="text-4xl text-center">Sign Up</h1>
         <a className="w-full text-center" href="/sign-in">
           -Sign In-
@@ -38,11 +38,7 @@ function SignupForm() {
           className="grid grid-cols-2 grid-rows-4 place-items-center gap-x-2 gap-y-4 register-form"
           onSubmit={handleSubmit}
         >
-          {submitted ? (
-            <div className="success-message">
-              Success! Thank you for registering
-            </div>
-          ) : null}
+          
           <div>
             <p>First Name</p>
             <input
@@ -70,7 +66,7 @@ function SignupForm() {
             <input
               onChange={handleEmailInputChange}
               values={values.email}
-              className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
+              className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
               placeholder="Email"
               name="email"
               required
@@ -81,7 +77,7 @@ function SignupForm() {
             <input
               onChange={handlePasswordInputChange}
               values={values.password}
-              className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
+              className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
               placeholder="Password"
               name="password"
               required
@@ -93,6 +89,11 @@ function SignupForm() {
           >
             Sign Up
           </button>
+          {submitted ? (
+            <div className="success-message">
+              Success! I currently do nothing at the moment
+            </div>
+          ) : null}
         </form>
       </div>
     </div>
