@@ -24,78 +24,133 @@ function SignupForm() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(values);
     setSubmitted(true);
   };
 
   return (
-    <div className="grid place-items-center p-8 h-screen form-container">
-      <div className="grid space-y-4 place-items-center">
-        <h1 className="text-4xl text-center">Sign Up</h1>
-        <a className="w-full text-center" href="/sign-in">
-          -Sign In-
-        </a>
-        <form
-          className="grid grid-cols-2 grid-rows-4 place-items-center gap-x-2 gap-y-4 register-form"
-          onSubmit={handleSubmit}
-        >
-          
-          <div>
-            <p>First Name</p>
-            <input
-              onChange={handleFirstNameInputChange}
-              values={values.firstName}
-              className="shadow apperance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
-              placeholder="First Name"
-              name="firstName"
-              required
-            />
-          </div>
-          <div>
-            <p>Last Name</p>
-            <input
-              onChange={handleLastNameInputChange}
-              values={values.lastName}
-              className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
-              placeholder="Last Name"
-              name="lastName"
-              required
-            />
-          </div>
-          <div className="col-span-2">
-            <p>Email</p>
-            <input
-              onChange={handleEmailInputChange}
-              values={values.email}
-              className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
-              placeholder="Email"
-              name="email"
-              required
-            />
-          </div>
-          <div className="col-span-2">
-            <p>Password</p>
-            <input
-              onChange={handlePasswordInputChange}
-              values={values.password}
-              className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
-              placeholder="Password"
-              name="password"
-              required
-            />
-          </div>
-          <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold col-span-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
-            type="submit"
-          >
-            Sign Up
-          </button>
-          {submitted ? (
-            <div className="success-message">
-              Success! I currently do nothing at the moment
+    <div>
+      {/* BEGIN HERO SECTION */}
+      <header>
+        <nav className="bg-white shadow dark:bg-gray-800">
+          <div className="container px-6 py-4 mx-auto">
+            <div className="lg:flex lg:items-center lg:justify-between">
+              <div className="flex items-center justify-between">
+                <div className="text-xl font-semibold text-gray-700">
+                  <a
+                    className="text-2xl font-bold text-gray-800 dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300"
+                    href="#"
+                  >
+                    Restaurant Recommendations
+                  </a>
+                </div>
+
+                {/* Mobile menu button */}
+                <div className="flex lg:hidden">
+                  <button
+                    type="button"
+                    className="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400"
+                    aria-label="toggle menu"
+                  >
+                    <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
+                      <path
+                        fill-rule="evenodd"
+                        d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              {/* Mobile Menu open: "block", Menu closed: "hidden" */}
+              <div className="hidden -mx-4 lg:flex lg:items-center">
+                <a
+                  href="/sign-in"
+                  className="block mx-4 mt-2 text-sm text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                  Sign In
+                </a>
+                <a
+                  href="/sign-up"
+                  className="block mx-4 mt-2 text-sm text-gray-700 capitalize lg:mt-0 dark:text-gray-200 hover:text-blue-600 dark:hover:text-blue-400"
+                >
+                  Sign Up
+                </a>
+              </div>
             </div>
-          ) : null}
-        </form>
+          </div>
+        </nav>
+      </header>
+      {/* END HERO SECTION */}
+      <div className="grid place-items-center p-8 h-screen form-container">
+        <div className="grid space-y-4 place-items-center">
+          <h1 className="text-4xl text-center">Sign Up</h1>
+          <a className="w-full text-center" href="/sign-in">
+            -Sign In-
+          </a>
+          <form
+            className="grid grid-cols-2 grid-rows-4 place-items-center gap-x-2 gap-y-4 register-form"
+            onSubmit={handleSubmit}
+            method="post"
+          >
+            <div>
+              <p>First Name</p>
+              <input
+                onChange={handleFirstNameInputChange}
+                values={values.firstName}
+                className="shadow apperance-none border rounded py-2 px-3 text-gray-700 w-48 leading-tight focus:outline-none focus:shadow-outline form-field"
+                placeholder="First Name"
+                name="firstName"
+                required
+              />
+            </div>
+            <div>
+              <p>Last Name</p>
+              <input
+                onChange={handleLastNameInputChange}
+                values={values.lastName}
+                className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 w-48 leading-tight focus:outline-none focus:shadow-outline form-field"
+                placeholder="Last Name"
+                name="lastName"
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <p>Email</p>
+              <input
+                onChange={handleEmailInputChange}
+                values={values.email}
+                className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 w leading-tight focus:outline-none focus:shadow-outline form-field"
+                placeholder="Email"
+                name="email"
+                required
+              />
+            </div>
+            <div className="col-span-2">
+              <p>Password</p>
+              <input
+                onChange={handlePasswordInputChange}
+                values={values.password}
+                className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
+                placeholder="Password"
+                name="password"
+                required
+              />
+            </div>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold col-span-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
+              type="submit"
+            >
+              Sign Up
+            </button>
+          </form>
+        </div>
       </div>
+      {submitted ? (
+        <div className="success-message">
+          Success! I currently do nothing at the moment
+        </div>
+      ) : null}
     </div>
   );
 }
