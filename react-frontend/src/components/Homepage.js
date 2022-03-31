@@ -1,4 +1,5 @@
 import HomeRecommendation from './HomeRecommendation';
+import Footer from './Footer';
 
 function Homepage() {
     return (
@@ -53,8 +54,8 @@ function Homepage() {
             </header>
             {/* END HERO SECTION */}
 
-
-            <div className="grid grid-cols-2 md:grid-cols-3 m-4">
+            <h2 className="text-2xl font-semibold text-black uppercase lg:text-3xl mt-20 mr-4 mb-8 ml-6">Friend Recommendations</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 m-4">
                 <HomeRecommendation />
                 <HomeRecommendation />
                 <HomeRecommendation />
@@ -62,6 +63,7 @@ function Homepage() {
                 <HomeRecommendation />
                 <HomeRecommendation />
             </div>
+            <Footer />
         </div>
 
     );
