@@ -7,7 +7,7 @@ function HomeFriendRecommendation() {
             <div className="p-6">
                 <div>
                     <a href="#" className="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform hover:text-gray-600 hover:underline">Restaurant</a>
-                    <p className="mt-2 text-sm text-gray-600">City, ST</p>
+                    <p className="text-sm text-gray-600">City, ST</p>
                 </div>
 
                 <div className="mt-4">
