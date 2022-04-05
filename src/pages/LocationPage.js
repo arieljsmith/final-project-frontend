@@ -1,5 +1,6 @@
 import NavBar from '../components/NavBar';
 import LocationHero from '../components/LocationHero';
+import LocationRecommendations from '../components/LocationRecommendations';
 import Footer from '../components/Footer';
 
 function LocationPage() {
@@ -27,7 +28,16 @@ function LocationPage() {
             </div>
 
             <div className="grid grid-cols-2 md:grid-cols-4 mt-4 mr-4 ml-4 mb-14">
-                <p>Recs here</p>
+                <LocationRecommendations />
+                <LocationRecommendations />
+                <LocationRecommendations />
+                <LocationRecommendations />
+                <LocationRecommendations />
+                <LocationRecommendations />
+                <LocationRecommendations />
+                <LocationRecommendations />
+                <LocationRecommendations />
+                <LocationRecommendations />
             </div>
 
             <Footer />

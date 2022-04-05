@@ -1,6 +1,6 @@
 function NavBar() {
     return (
-        <nav className="bg-rose-600 shadow">
+        <nav className="bg-rose-600 sticky top-0 z-50 shadow-2xl">
             <div className="container px-6 py-4 mx-auto">
                 <div className="lg:flex lg:items-center lg:justify-between">
                     <div className="flex items-center justify-between">
