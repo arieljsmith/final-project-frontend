@@ -2,6 +2,7 @@ import HomeFriendRecommendation from '../components/HomeFriendRecommendation';
 import Footer from '../components/Footer';
 import HomeHero from '../components/HomeHero';
 import NavBar from '../components/NavBar';
+import AddRecModal from '../components/AddRecModal';
 
 function Homepage() {
     return (
