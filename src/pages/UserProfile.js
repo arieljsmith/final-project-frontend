@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import UserRecommendations from "../components/UserRecommendations";
+import AddRecModal from "../components/AddRecModal";
 
 function UserProfile() {
   return (
@@ -25,7 +26,7 @@ function UserProfile() {
         </div>
         <div className="">
           <a className="text-2xl p-1 ">Recs</a>
-          <button className="rounded-full border w-6">+</button>
+          <AddRecModal />
         </div>
         <div className="grid grid-cols-3">
           <UserRecommendations />

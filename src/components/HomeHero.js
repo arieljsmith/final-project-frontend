@@ -1,3 +1,5 @@
+import AddRecModal from "./AddRecModal";
+
 function HomeHero() {
     return (
         <header className="mb-16">
@@ -9,7 +11,7 @@ function HomeHero() {
                     {/* SEARCH BAR START */}
                     <div className="pt-2 relative mx-auto text-gray-600">
                         <input className="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-lg text-sm focus:outline-none inline" type="search" name="search" placeholder="Search" />
-                        <button className="w-auto px-3.5 py-2 mt-4 text-sm ml-4 font-medium text-white uppercase transition-colors duration-200 transform bg-rose-600 rounded-full lg:w-auto hover:bg-rose-500 focus:outline-none focus:bg-rose-500 inline">+</button>
+                        <AddRecModal />
                     </div>
                     {/* SEARCH BAR END */}
                     {/* ADD REC BUTTON START */}
