@@ -51,7 +51,6 @@ function Homepage() {
             </div>
             <Footer />
         </div>
-
     );
 }
 
