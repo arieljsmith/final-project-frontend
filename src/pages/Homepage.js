@@ -1,7 +1,6 @@
 import HomeFriendRecommendation from '../components/HomeFriendRecommendation';
 import Footer from '../components/Footer';
 import HomeHero from '../components/HomeHero';
-import AddFriendModal from '../components/AddFriendModal';
 import NavBar from '../components/NavBar';
 
 function Homepage() {
