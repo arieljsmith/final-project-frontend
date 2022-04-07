@@ -28,8 +28,6 @@ function Homepage() {
                 <HomeFriendRecommendation />
                 <HomeFriendRecommendation />
                 <HomeFriendRecommendation />
-
-                <AddFriendModal />
             </div>
             <Footer />
         </div>
