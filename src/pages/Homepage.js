@@ -3,8 +3,28 @@ import Footer from '../components/Footer';
 import HomeHero from '../components/HomeHero';
 import NavBar from '../components/NavBar';
 import AddRecModal from '../components/AddRecModal';
+import { useState } from 'react';
 
 function Homepage() {
+    const [isLoading, setIsLoading] = useState(true);
+    const [loadedRestaurants, setLoadedRestaurants] = useState([]);
+
+    fetch('https://undefined-rest-api.herokuapp.com/api/restaurants/?format=json'
+    ).then(response => {
+        return response.json();
+    }).then(data => {
+        setIsLoading(false);
+        setLoadedRestaurants(data);
+    });
+
+    if (isLoading) {
+        return (
+            <section>
+                <p>Loading...</p>
+            </section>
+        );
+    }
+
     return (
         <div className="bg-slate-100">
             <NavBar />
