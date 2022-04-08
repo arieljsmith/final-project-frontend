@@ -9,6 +9,7 @@ function AllRecommendations(props) {
                     id={restaurant.id}
                     name={restaurant.name}
                     city={restaurant.city}
+                    creator={restaurant.creator}
                 />
             ))}
         </div>
