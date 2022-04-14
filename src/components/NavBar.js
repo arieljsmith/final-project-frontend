@@ -7,7 +7,7 @@ function NavBar() {
                     <div className="lg:flex lg:items-center lg:justify-between">
                         <div className="flex items-center justify-between">
                             <div className="text-xl font-semibold text-gray-700">
-                                <a className="text-2xl font-bold text-white lg:text-3xl hover:text-gray-200" href="#">Restaurant Recommendations</a>
+                                <a className="text-2xl font-bold text-white lg:text-3xl hover:text-gray-200" href="/home">Restaurant Recommendations</a>
                             </div>
     
                             {/* Mobile menu button */}
