@@ -82,6 +82,7 @@ function SignupForm() {
                 className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
                 placeholder="Password"
                 name="password"
+                type='password'
                 required
               />
             </div>
