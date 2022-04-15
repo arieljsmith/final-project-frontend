@@ -1,9 +1,12 @@
+import { Result } from "postcss";
 import React, { useState } from "react";
+
+
 
 function SignupForm() {
   const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
+    // lastName: "",
     email: "",
     password: "",
   });
@@ -11,10 +14,7 @@ function SignupForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleFirstNameInputChange = (event) => {
-    setValues({ ...values, firstName: event.target.value });
-  };
-  const handleLastNameInputChange = (event) => {
-    setValues({ ...values, lastName: event.target.value });
+    setValues({ ...values, name: event.target.value });
   };
   const handleEmailInputChange = (event) => {
     setValues({ ...values, email: event.target.value });
@@ -22,12 +22,23 @@ function SignupForm() {
   const handlePasswordInputChange = (event) => {
     setValues({ ...values, password: event.target.value });
   };
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
+      fetch('https://undefined-rest-api.herokuapp.com/api/users/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      })
+        .then((Response) => Response.json())
     console.log(values);
     setSubmitted(true);
   };
 
+
+  
   return (
     <div>
       <div className="grid place-items-center p-8 h-screen form-container">
@@ -41,25 +52,14 @@ function SignupForm() {
             onSubmit={handleSubmit}
             method="post"
           >
-            <div>
-              <p>First Name</p>
+            <div className="col-span-2">
+              <p>Name</p>
               <input
                 onChange={handleFirstNameInputChange}
-                values={values.firstName}
-                className="shadow apperance-none border rounded py-2 px-3 text-gray-700 w-48 leading-tight focus:outline-none focus:shadow-outline form-field"
-                placeholder="First Name"
-                name="firstName"
-                required
-              />
-            </div>
-            <div>
-              <p>Last Name</p>
-              <input
-                onChange={handleLastNameInputChange}
-                values={values.lastName}
-                className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 w-48 leading-tight focus:outline-none focus:shadow-outline form-field"
-                placeholder="Last Name"
-                name="lastName"
+                values={values.name}
+                className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 w leading-tight focus:outline-none focus:shadow-outline form-field"
+                placeholder="Name"
+                name="name"
                 required
               />
             </div>
@@ -82,6 +82,7 @@ function SignupForm() {
                 className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
                 placeholder="Password"
                 name="password"
+                type='password'
                 required
               />
             </div>
