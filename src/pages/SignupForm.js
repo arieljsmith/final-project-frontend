@@ -2,8 +2,8 @@ import React, { useState } from "react";
 
 function SignupForm() {
   const [values, setValues] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
+    // lastName: "",
     email: "",
     password: "",
   });
@@ -11,11 +11,11 @@ function SignupForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleFirstNameInputChange = (event) => {
-    setValues({ ...values, firstName: event.target.value });
+    setValues({ ...values, ame: event.target.value });
   };
-  const handleLastNameInputChange = (event) => {
-    setValues({ ...values, lastName: event.target.value });
-  };
+  // const handleLastNameInputChange = (event) => {
+  //   setValues({ ...values, lastName: event.target.value });
+  // };
   const handleEmailInputChange = (event) => {
     setValues({ ...values, email: event.target.value });
   };
@@ -41,18 +41,18 @@ function SignupForm() {
             onSubmit={handleSubmit}
             method="post"
           >
-            <div>
-              <p>First Name</p>
+            <div className="col-span-2">
+              <p>Name</p>
               <input
                 onChange={handleFirstNameInputChange}
-                values={values.firstName}
-                className="shadow apperance-none border rounded py-2 px-3 text-gray-700 w-48 leading-tight focus:outline-none focus:shadow-outline form-field"
-                placeholder="First Name"
-                name="firstName"
+                values={values.name}
+                className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 w leading-tight focus:outline-none focus:shadow-outline form-field"
+                placeholder="Name"
+                name="name"
                 required
               />
             </div>
-            <div>
+            {/* <div>
               <p>Last Name</p>
               <input
                 onChange={handleLastNameInputChange}
@@ -62,7 +62,7 @@ function SignupForm() {
                 name="lastName"
                 required
               />
-            </div>
+            </div> */}
             <div className="col-span-2">
               <p>Email</p>
               <input
