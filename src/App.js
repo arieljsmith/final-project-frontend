@@ -8,11 +8,12 @@ import UserProfile from "./pages/UserProfile";
 function App() {
   return (
     <Routes>
-      <Route path="/sign-up" element={<SignupForm />} />
-      <Route path="/sign-in" element={<SigninForm />} />
+      <Route path="/signup" element={<SignupForm />} />
+      <Route path="/signin" element={<SigninForm />} />
       <Route path="/home" element={<Homepage />} />
       <Route path="/location" element={<LocationPage />} />
       <Route path="/user" element={<UserProfile />} />
+      <Route path="/" element={<Homepage />} />
     </Routes>
   );
 }

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 function SignupForm() {
   const [values, setValues] = useState({
@@ -30,10 +32,11 @@ function SignupForm() {
 
   return (
     <div>
+      <NavBar />
       <div className="grid place-items-center p-8 h-screen form-container">
         <div className="grid space-y-4 place-items-center">
           <h1 className="text-4xl text-center">Sign Up</h1>
-          <a className="w-full text-center" href="/sign-in">
+          <a className="w-full text-center" href="/signin">
             -Sign In-
           </a>
           <form
@@ -99,6 +102,7 @@ function SignupForm() {
           Success! I currently do nothing at the moment
         </div>
       ) : null}
+      <Footer />
     </div>
   );
 }

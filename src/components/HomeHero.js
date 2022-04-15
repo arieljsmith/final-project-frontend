@@ -1,19 +1,17 @@
 import AddRecModal from "./AddRecModal";
-import { useState } from 'react';
+import { useState } from "react";
 
 function HomeHero() {
+  const [searchCities, setSearchCities] = useState("");
 
-    const [searchCities, setSearchCities] = useState("")
+  const handleSearchInput = (event) => {
+    setSearchCities(event.target.value);
+  };
 
-    const handleSearchInput = (event) => {
-        setSearchCities(event.target.value)
-    }
-
-    function SearchLocation(event) {
-        event.preventDefault();
-        window.location.href="/location?city="+searchCities
-
-    }
+  function SearchLocation(event) {
+    event.preventDefault();
+    window.location.href = "/location?city=" + searchCities;
+  }
 
   return (
     <header className="mb-16">

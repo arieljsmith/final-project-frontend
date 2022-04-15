@@ -21,7 +21,11 @@ function LocationPage() {
         const params = new URLSearchParams(window.location.search);
         const city = params.get("city");
         setIsLoading(false);
-        setLoadedRestaurants(data.filter((value) => {return value.city.toLowerCase().includes(city.toLowerCase())}));
+        setLoadedRestaurants(
+          data.filter((value) => {
+            return value.city.toLowerCase().includes(city.toLowerCase());
+          })
+        );
       });
   }, []);
 
