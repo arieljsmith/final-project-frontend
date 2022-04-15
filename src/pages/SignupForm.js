@@ -1,4 +1,7 @@
+import { Result } from "postcss";
 import React, { useState } from "react";
+
+
 
 function SignupForm() {
   const [values, setValues] = useState({
@@ -11,23 +14,31 @@ function SignupForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleFirstNameInputChange = (event) => {
-    setValues({ ...values, ame: event.target.value });
+    setValues({ ...values, name: event.target.value });
   };
-  // const handleLastNameInputChange = (event) => {
-  //   setValues({ ...values, lastName: event.target.value });
-  // };
   const handleEmailInputChange = (event) => {
     setValues({ ...values, email: event.target.value });
   };
   const handlePasswordInputChange = (event) => {
     setValues({ ...values, password: event.target.value });
   };
-  const handleSubmit = (event) => {
+  function handleSubmit(event) {
     event.preventDefault();
+      fetch('https://undefined-rest-api.herokuapp.com/api/users/', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+      })
+        .then((Response) => Response.json())
     console.log(values);
     setSubmitted(true);
   };
 
+
+  
   return (
     <div>
       <div className="grid place-items-center p-8 h-screen form-container">
@@ -52,17 +63,6 @@ function SignupForm() {
                 required
               />
             </div>
-            {/* <div>
-              <p>Last Name</p>
-              <input
-                onChange={handleLastNameInputChange}
-                values={values.lastName}
-                className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 w-48 leading-tight focus:outline-none focus:shadow-outline form-field"
-                placeholder="Last Name"
-                name="lastName"
-                required
-              />
-            </div> */}
             <div className="col-span-2">
               <p>Email</p>
               <input
