@@ -7,7 +7,7 @@ function HomeFriendRecommendation(props) {
             <div className="p-6">
                 <div>
                     <a href="#" className="block mt-2 text-2xl font-semibold text-gray-800 transition-colors duration-200 transform hover:text-gray-600 hover:underline">{props.name}</a>
-                    <p className="text-sm text-gray-600">{props.city}</p>
+                    <a href={'/location?city=' + props.city} className="text-sm text-gray-600 hover:underline">{props.city}</a>
                 </div>
 
                 <div className="mt-4">

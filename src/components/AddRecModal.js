@@ -1,7 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const AddRecModal = (props) => {
+const AddRecModal = () => {
   const [showModal, setShowModal] = useState(false);
+  const [cityNames, setCityNames] = useState([]);
+
+  useEffect(() => {
+    fetch("https://undefined-rest-api.herokuapp.com/api/cities/")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setCityNames(
+          data.map((value) => {
+            return value.name;
+          })
+        );
+      });
+  }, []);
+
   return (
     <>
       <button
@@ -44,9 +60,9 @@ const AddRecModal = (props) => {
                       id="city"
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                     >
-                      <option value="city">City1</option>
-                      <option value="city">City2</option>
-                      <option value="city">City3</option>
+                      {cityNames.map((name) => (
+                        <option value={name}>{name}</option>
+                      ))}
                     </select>
                     <label className="block text-black text-sm font-bold mb-1">
                       Image
