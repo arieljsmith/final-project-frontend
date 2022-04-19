@@ -5,7 +5,6 @@ const AddRecModal = (props) => {
 
     const [values, setValues] = useState({
     name: "",
-    city: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -23,7 +22,7 @@ const AddRecModal = (props) => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch('https://undefined-rest-api.herokuapp.com/api/restuarant/', {
+    fetch("https://undefined-rest-api.herokuapp.com/api/restaurants/", {
         method: 'POST',
         headers: {
         'Accept': 'application/json',
@@ -43,14 +42,15 @@ const AddRecModal = (props) => {
 
 
   return (
-    <><div></div>
-      <button
+    <>
+      {/* <button
         className="w-auto px-3.5 py-2 mb-4 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-rose-600 rounded-full lg:w-auto hover:bg-rose-500 focus:outline-none focus:bg-rose-500"
         type="button"
         onClick={() => setShowModal(true)}
       >
-        +
-      </button>
+        Add Recommendation
+      </button> */}
+      <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200" onClick={() => setShowModal(true)}>Add Recommendation</a>
       {showModal ? (
         <>
           <div className="flex justify-center backdrop-blur items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
@@ -94,6 +94,7 @@ const AddRecModal = (props) => {
                         required
                       />
                     </div>
+                    <div>
                     <button
                       className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
                       type="submit"
@@ -101,6 +102,7 @@ const AddRecModal = (props) => {
                     >
                       Add
                     </button>
+                    </div>
                     {submitted ? (
                       <div className="success-message">
                         Success! I currently do nothing at the moment.

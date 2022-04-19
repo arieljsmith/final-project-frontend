@@ -64,7 +64,7 @@ function UserProfile() {
         </div>
         <div className="">
           <a className="text-2xl p-1 ">Recs</a>
-          <AddRecModal />
+          {/* <AddRecModal /> */}
         </div>
         <div className="grid grid-cols-3">
           <UserRecommendations />

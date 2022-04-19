@@ -1,5 +1,6 @@
 import AddFriendModal from './AddFriendModal';
 import AddCityModal from './AddCityModal';
+import AddRecModal from './AddRecModal';
 
 function NavBar() {
         return (
@@ -25,6 +26,7 @@ function NavBar() {
                         <div className="hidden -mx-4 lg:flex lg:items-center">
                             <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">My Profile</a>
                             {/* <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">Add Recommendation</a> */}
+                            <AddRecModal />
                             {/* <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">Add Friend</a> */}
                             <AddFriendModal />
                             <AddCityModal />
