@@ -2,29 +2,42 @@ import React, { useState } from "react";
 
 
 function AddCityModal() {
-    const [showModal, setShowModal] = useState(false);
-    const [submitted, setSubmitted] = useState(false);
-    const handleCitytNameInputChange = (event) => {
-        setValues({ ...values, name: event.target.value });
-    
-        
-    function handleSubmit(event) {
-        event.preventDefault();
-        fetch('https://undefined-rest-api.herokuapp.com/api/cities/', {
-            method: 'POST',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(values)
-        })
-            .then((Response) => Response.json())
-        console.log(values);
-        setSubmitted(true);
-        };    
+  const [showModal, setShowModal] = useState(false);
 
+  const { user } = 'Mike'
 
+  const [values, setValues] = useState({
+    name: "",
+    creator: user,
+  });
+
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleNameInputChange = (event) => {
+    setValues({ ...values, name: event.target.value });
   };
+
+
+
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    fetch('https://undefined-rest-api.herokuapp.com/api/cities/', {
+        method: 'POST',
+        headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'accessToken',
+        },
+        body: JSON.stringify(values)
+    })
+        .then((response) => response.text())
+        .then((data) => console.log(data));
+    console.log(values)
+    setShowModal(false)
+    }; 
+
+
   return (
     <>
       {/* <button
@@ -53,25 +66,34 @@ function AddCityModal() {
                   </button>
                 </div>
                 <div className="text-left relative p-6 flex-auto">
-                  <form className="  rounded px-8 pt-6 pb-8 w-full">
-                    <label className="block text-black text-sm font-bold mb-1">
-                      City Name
-                    </label>
-                    <input 
-                    className="shadow appearance-none border rounded w-full py-2 px-1 text-black" 
-                    onChange={handleCitytNameInputChange} 
-                    />
-                  </form>
-                </div>
-                <div className="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-
-                  <button
-                    className=" place-items-center text-white bg-gray-400 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                    type="button"
-                    onClick={(hand) => setShowModal(false)}
+                  <form
+                    className="grid grid-cols-1 grid-rows-2  place-items-center gap-2 register-form"
+                    onSubmit={handleSubmit}
                   >
-                    Add
-                  </button>
+                    <div>
+                      <p>Name</p>
+                      <input
+                        onChange={handleNameInputChange}
+                        values={values.name}
+                        className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
+                        placeholder="Name"
+                        name="name"
+                        required
+                      />
+                    </div>
+                    <button
+                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
+                      type="submit"
+                      // onClick={() => setShowModal(false)}
+                    >
+                      Add
+                    </button>
+                    {submitted ? (
+                      <div className="success-message">
+                        Success! I currently do nothing at the moment.
+                      </div>
+                    ) : null}
+                  </form>
                 </div>
               </div>
             </div>
