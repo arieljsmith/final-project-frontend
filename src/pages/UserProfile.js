@@ -3,10 +3,12 @@ import Footer from "../components/Footer";
 import UserRecommendations from "../components/UserRecommendations";
 import AddRecModal from "../components/AddRecModal";
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
 
 function UserProfile() {
   const [isLoading, setIsLoading] = useState(true);
   const [loadedUsers, setLoadedUsers] = useState([]);
+  const location = useLocation()
 
   // Keeps this fetch request from looping infinitely
   useEffect(() => {
@@ -30,9 +32,11 @@ function UserProfile() {
   }
 
   console.log(loadedUsers)
+
   return (
     <div>
       <NavBar />
+      <span>Path is: {location.pathname}</span>
       <div>
         <div className="grid place-items-center flex items-center">
           <img
