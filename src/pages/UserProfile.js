@@ -21,7 +21,6 @@ function UserProfile() {
       });
   }, []);
 
-  
   // Displays a temporary loading screen while fetch request is running
   if (isLoading) {
       return (
@@ -31,12 +30,21 @@ function UserProfile() {
       );
   }
 
-  console.log(loadedUsers)
+  let creator_id = location.pathname.substr(6)
+
+  function GetSpecificUser(userList) {
+    for (var user of userList) {
+        if (user.id == creator_id) {
+            return user
+        }
+    }
+  } 
+
+  let creator = GetSpecificUser(loadedUsers)
 
   return (
     <div>
       <NavBar />
-      <span>Path is: {location.pathname}</span>
       <div>
         <div className="grid place-items-center flex items-center">
           <img
@@ -46,7 +54,7 @@ function UserProfile() {
           />
           <div>
             <a className="mx-2 text-2xl font-semibold text-gray-700">
-              Jone Doe
+              {creator.name}
             </a>
           </div>
           <a>City, ST</a>
