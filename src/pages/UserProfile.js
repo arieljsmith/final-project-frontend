@@ -2,8 +2,34 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import UserRecommendations from "../components/UserRecommendations";
 import AddRecModal from "../components/AddRecModal";
+import { useState, useEffect } from 'react';
 
 function UserProfile() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedUsers, setLoadedUsers] = useState([]);
+
+  // Keeps this fetch request from looping infinitely
+  useEffect(() => {
+      fetch('https://undefined-rest-api.herokuapp.com/api/users/?format=json'
+      ).then(response => {
+          return response.json();
+      }).then(data => {
+          setIsLoading(false);
+          setLoadedUsers(data);
+      });
+  }, []);
+
+  
+  // Displays a temporary loading screen while fetch request is running
+  if (isLoading) {
+      return (
+          <section>
+              <p>Loading...</p>
+          </section>
+      );
+  }
+
+  console.log(loadedUsers)
   return (
     <div>
       <NavBar />
