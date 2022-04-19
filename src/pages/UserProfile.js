@@ -6,8 +6,10 @@ import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'
 
 function UserProfile() {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isUsersLoading, setIsUsersLoading] = useState(true);
+  const [isRestaurantsLoading, setIsRestaurantsLoading] = useState(true);
   const [loadedUsers, setLoadedUsers] = useState([]);
+  const [loadedRestaurants, setLoadedRestaurants] = useState([]);
   const location = useLocation()
 
   // Keeps this fetch request from looping infinitely
@@ -16,13 +18,25 @@ function UserProfile() {
       ).then(response => {
           return response.json();
       }).then(data => {
-          setIsLoading(false);
+          setIsUsersLoading(false);
           setLoadedUsers(data);
       });
   }, []);
 
+  // Keeps this fetch request from looping infinitely
+  useEffect(() => {
+      fetch('https://undefined-rest-api.herokuapp.com/api/restaurants/?format=json'
+      ).then(response => {
+          return response.json();
+      }).then(data => {
+          setIsRestaurantsLoading(false);
+          setLoadedRestaurants(data);
+          console.log(loadedRestaurants)
+      });
+  }, []);
+
   // Displays a temporary loading screen while fetch request is running
-  if (isLoading) {
+  if (isUsersLoading || isRestaurantsLoading) {
       return (
           <section>
               <p>Loading...</p>
