@@ -2,8 +2,46 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import UserRecommendations from "../components/UserRecommendations";
 import AddRecModal from "../components/AddRecModal";
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
 
 function UserProfile() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadedUsers, setLoadedUsers] = useState([]);
+  const location = useLocation()
+
+  // Keeps this fetch request from looping infinitely
+  useEffect(() => {
+      fetch('https://undefined-rest-api.herokuapp.com/api/users/?format=json'
+      ).then(response => {
+          return response.json();
+      }).then(data => {
+          setIsLoading(false);
+          setLoadedUsers(data);
+      });
+  }, []);
+
+  // Displays a temporary loading screen while fetch request is running
+  if (isLoading) {
+      return (
+          <section>
+              <p>Loading...</p>
+          </section>
+      );
+  }
+
+  let creator_id = location.pathname.substr(6)
+
+  function GetSpecificUser(userList) {
+    for (var user of userList) {
+        if (user.id == creator_id) {
+            return user
+        }
+    }
+  } 
+
+  let creator = GetSpecificUser(loadedUsers)
+
   return (
     <div>
       <NavBar />
@@ -16,7 +54,7 @@ function UserProfile() {
           />
           <div>
             <a className="mx-2 text-2xl font-semibold text-gray-700">
-              Jone Doe
+              {creator.name}
             </a>
           </div>
           <a>City, ST</a>
