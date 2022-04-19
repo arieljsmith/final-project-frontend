@@ -4,11 +4,9 @@ import React, { useState } from "react";
 function AddCityModal() {
   const [showModal, setShowModal] = useState(false);
 
-  const { user } = 'Mike'
 
   const [values, setValues] = useState({
     name: "",
-    creator: user,
   });
 
   const [submitted, setSubmitted] = useState(false);

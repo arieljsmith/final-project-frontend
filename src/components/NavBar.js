@@ -24,7 +24,7 @@ function NavBar() {
                         {/* Mobile Menu open: "block", Menu closed: "hidden" */}
                         <div className="hidden -mx-4 lg:flex lg:items-center">
                             <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">My Profile</a>
-                            <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">Add Recommendation</a>
+                            {/* <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">Add Recommendation</a> */}
                             {/* <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">Add Friend</a> */}
                             <AddFriendModal />
                             <AddCityModal />
