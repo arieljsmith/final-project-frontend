@@ -1,6 +1,12 @@
 import HomeFriendRecommendation from './HomeFriendRecommendation';
 
 function SpecificUserRecs(props) {
+
+    console.log(props.restaurants)
+    console.log(props.user)
+
+    
+
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 mt-4 mr-4 ml-4 mb-14">
             {props.restaurants.map((restaurant) => (

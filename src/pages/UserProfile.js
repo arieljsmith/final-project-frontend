@@ -81,7 +81,7 @@ function UserProfile() {
           <a className="text-2xl p-1 ">Recs</a>
           <AddRecModal />
         </div>
-        <SpecificUserRecs restaurants={loadedRestaurants} />
+        <SpecificUserRecs restaurants={loadedRestaurants} user={creator}/>
       </div>
       <Footer />
     </div>
