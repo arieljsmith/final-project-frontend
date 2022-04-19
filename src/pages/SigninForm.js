@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import NavBar from "../components/NavBar";
+import Footer from "../components/Footer";
 
 function SigninForm() {
   const [values, setValues] = useState({
@@ -21,10 +23,11 @@ function SigninForm() {
 
   return (
     <div>
+      <NavBar />
       <div className="grid place-items-center  p-8  h-screen form-container">
         <div className="grid place-items-center">
           <h1 className="text-4xl">Sign In</h1>
-          <a href="/sign-up">-Sign Up-</a>
+          <a href="/signup">-Sign Up-</a>
         </div>
         <form
           className="grid grid-cols-1 grid-rows-6  place-items-center gap-2 register-form"
@@ -65,6 +68,7 @@ function SigninForm() {
           ) : null}
         </form>
       </div>
+      <Footer />
     </div>
   );
 }

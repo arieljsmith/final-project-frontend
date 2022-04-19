@@ -10,6 +10,7 @@ function AllRecommendations(props) {
                     name={restaurant.name}
                     city={restaurant.city}
                     creator={restaurant.creator}
+                    creator_id={restaurant.creator_id}
                 />
             ))}
         </div>

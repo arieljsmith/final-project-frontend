@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const AddRecModal = () => {
+const AddRecModal = (props) => {
   const [showModal, setShowModal] = useState(false);
   return (
     <>
@@ -44,9 +44,9 @@ const AddRecModal = () => {
                       id="city"
                       className="shadow appearance-none border rounded w-full py-2 px-1 text-black"
                     >
-                      <option value="city">City</option>
-                      <option value="city">City</option>
-                      <option value="city">City</option>
+                      <option value="city">City1</option>
+                      <option value="city">City2</option>
+                      <option value="city">City3</option>
                     </select>
                     <label className="block text-black text-sm font-bold mb-1">
                       Image

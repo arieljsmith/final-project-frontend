@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function HomeFriendRecommendation(props) {
     return (
         <div className="relative max-w-2xl m-2 overflow-hidden bg-white rounded-lg shadow-md">
@@ -16,7 +18,13 @@ function HomeFriendRecommendation(props) {
                             <img className="object-cover h-10 rounded-full" src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60" alt="Avatar" />
                             <div>
                                 <p className="mx-3 text-[10px] text-gray-400">Recommended by</p>
-                                <a href="#" className="mx-2 font-semibold text-gray-700">{props.creator}</a>
+                                <Link 
+                                    to={{
+                                    pathname: `/user/${props.creator_id}`
+                                    }}
+                                >
+                                    {props.creator}
+                                </Link>
                             </div>
                         </div>
                     </div>
