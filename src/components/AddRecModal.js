@@ -56,7 +56,8 @@ const AddRecModal = (props) => {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Authorization': 'accessToken',
+        'Authorization': 'accessToken'
+        ,
       },
       body: JSON.stringify(values)
     })
@@ -113,15 +114,15 @@ const AddRecModal = (props) => {
                     </div>
                     <div>
                       <p>City</p>
-                      <select
+                      <input
                         onChange={handleCityInputChange}
                         values={values.city}
                         className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
                         placeholder="Name"
                         name="name"
                         required
-                        >
-                        </select>
+                        />
+                        
                     </div>
                     <div>
                       <button
