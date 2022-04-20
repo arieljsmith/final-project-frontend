@@ -2,10 +2,12 @@ import { Result } from "postcss";
 import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import { useNavigate } from 'react-router-dom';
 
 
 
 function SignupForm() {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     name: "",
     // lastName: "",
@@ -26,7 +28,7 @@ function SignupForm() {
   };
   function handleSubmit(event) {
     event.preventDefault();
-      fetch('https://undefined-rest-api.herokuapp.com/api/users/', {
+      fetch('http://localhost:8000/api/users/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
@@ -34,9 +36,12 @@ function SignupForm() {
         },
         body: JSON.stringify(values)
       })
-        .then((Response) => Response.json())
-    console.log(values);
-    setSubmitted(true);
+        .then((Response) => {
+          // Response.json());
+          navigate('/signin');
+          console.log(values);
+          setSubmitted(true);
+        });
   };
 
 
