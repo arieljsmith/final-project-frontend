@@ -1,11 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+
 
 const AddRecModal = (props) => {
   const [showModal, setShowModal] = useState(false);
 
-    const [values, setValues] = useState({
+  const [values, setValues] = useState({
     name: "",
+    city: '',
   });
+
+
+  const [loadedCities, setLoadedCities] = useState([]);
+  console.log(loadedCities)
+  // console.log(props.loadedCities.name)
+  useEffect(() => {
+    fetch('https://undefined-rest-api.herokuapp.com/api/cities/?format=json'
+    ).then(response => {
+      return response.json();
+    }).then(data => {
+      setLoadedCities(data);
+      console.log(data);
+    });
+  }, []);
+
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -17,26 +35,33 @@ const AddRecModal = (props) => {
     setValues({ ...values, name: event.target.value });
   };
 
-
+  // function cityMap(props) {
+  //   return (
+  //   props.restaurants.map((city) => (
+  //       key={restaurant.id}
+  //       id={restaurant.id}
+  //       name={city.name}
+  //       city={restaurant.city}
+  //       creator={restaurant.creator}
+  //       creator_id={restaurant.creator_id}))}
 
 
   function handleSubmit(event) {
     event.preventDefault();
     fetch("https://undefined-rest-api.herokuapp.com/api/restaurants/", {
-        method: 'POST',
-        headers: {
+      method: 'POST',
+      headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
         'Authorization': 'accessToken',
-        },
-        body: JSON.stringify(values)
+      },
+      body: JSON.stringify(values)
     })
-        .then((response) => response.text())
-        .then((data) => console.log(data));
+      .then((response) => response.text())
+      .then((data) => console.log(data));
     console.log(values)
     setShowModal(false)
-    }; 
-
+  };
 
 
 
@@ -85,23 +110,25 @@ const AddRecModal = (props) => {
                     </div>
                     <div>
                       <p>City</p>
-                      <input
+                      <select
                         onChange={handleCityInputChange}
                         values={values.city}
                         className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
                         placeholder="Name"
                         name="name"
                         required
-                      />
+                      >
+                        <option></option>)
+                      </select>
                     </div>
                     <div>
-                    <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
-                      type="submit"
+                      <button
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
+                        type="submit"
                       // onClick={() => setShowModal(false)}
-                    >
-                      Add
-                    </button>
+                      >
+                        Add
+                      </button>
                     </div>
                     {submitted ? (
                       <div className="success-message">
