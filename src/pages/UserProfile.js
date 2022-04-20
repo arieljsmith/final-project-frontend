@@ -32,7 +32,7 @@ function UserProfile() {
       }).then(data => {
           setIsRestaurantsLoading(false);
           setLoadedRestaurants(data);
-          console.log(loadedRestaurants)
+          // console.log(loadedRestaurants)
       });
   }, []);
 

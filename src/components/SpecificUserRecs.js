@@ -2,14 +2,22 @@ import HomeFriendRecommendation from './HomeFriendRecommendation';
 
 function SpecificUserRecs(props) {
 
-    console.log(props.restaurants)
-    console.log(props.user)
-
-    
+    function GetRelevantUserRestaurants(user, restaurantList) {
+        let userRestaurantDict = [];
+        for (var restaurant of restaurantList) {
+            if (restaurant.creator == user.name){
+                userRestaurantDict.push(restaurant);
+            }
+        }
+        return userRestaurantDict;
+      }
+      
+    let userRestaurants = GetRelevantUserRestaurants(props.user, props.restaurants);
+    console.log(userRestaurants);
 
     return (
         <div className="grid grid-cols-2 md:grid-cols-4 mt-4 mr-4 ml-4 mb-14">
-            {props.restaurants.map((restaurant) => (
+            {userRestaurants?.map((restaurant) => (
                 <HomeFriendRecommendation
                     key={restaurant.id}
                     id={restaurant.id}
