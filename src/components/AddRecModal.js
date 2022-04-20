@@ -61,7 +61,7 @@ const AddRecModal = (props) => {
       },
       body: JSON.stringify(values)
     })
-      .then((response) => response.text())
+      .then((response) => response.json())
       .then((data) => console.log(data));
     console.log(values)
     setShowModal(false)
@@ -114,14 +114,19 @@ const AddRecModal = (props) => {
                     </div>
                     <div>
                       <p>City</p>
-                      <input
+                      <select
                         onChange={handleCityInputChange}
                         values={values.city}
                         className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
                         placeholder="Name"
                         name="name"
                         required
-                        />
+                        >
+                          
+                          {loadedCities.map(city => (
+                            <option key={city.id}>{city.name}</option>
+                          ))}
+                        </select>
                         
                     </div>
                     <div>
