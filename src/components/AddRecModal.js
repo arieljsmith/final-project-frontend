@@ -3,7 +3,7 @@ import React, { useState, useEffect, } from "react";
 
 
 
-const AddRecModal = (props) => {
+const AddRecModal = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [values, setValues] = useState({
@@ -66,6 +66,7 @@ const AddRecModal = (props) => {
     console.log(values)
     setShowModal(false)
   };
+
 
 
 
