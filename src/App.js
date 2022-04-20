@@ -14,8 +14,12 @@ function App() {
       <Route path="/logout" element={<Logout />} />
       <Route path="/home" element={<Homepage />} />
       <Route path="/location" element={<LocationPage />} />
-      <Route path="/user" element={<UserProfile />} />
+      {/* <Route path="/user" element={<UserProfile />} /> */}
       <Route path="/" element={<Homepage />} />
+      <Route 
+        path="/user/:id"
+        element={<UserProfile />}
+      />
     </Routes>
   );
 }

@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import { useNavigate } from 'react-router-dom';
+import PreviousMap from "postcss/lib/previous-map";
+
 
 
 
@@ -14,6 +16,8 @@ function SignupForm() {
     email: "",
     password: "",
   });
+
+  const navigate = useNavigate();
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -42,6 +46,7 @@ function SignupForm() {
           console.log(values);
           setSubmitted(true);
         });
+
   };
 
 

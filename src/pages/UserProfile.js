@@ -2,8 +2,61 @@ import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import UserRecommendations from "../components/UserRecommendations";
 import AddRecModal from "../components/AddRecModal";
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
+import SpecificUserRecs from "../components/SpecificUserRecs";
 
 function UserProfile() {
+  const [isUsersLoading, setIsUsersLoading] = useState(true);
+  const [isRestaurantsLoading, setIsRestaurantsLoading] = useState(true);
+  const [loadedUsers, setLoadedUsers] = useState([]);
+  const [loadedRestaurants, setLoadedRestaurants] = useState([]);
+  const location = useLocation()
+
+  // Keeps this fetch request from looping infinitely
+  useEffect(() => {
+      fetch('https://undefined-rest-api.herokuapp.com/api/users/?format=json'
+      ).then(response => {
+          return response.json();
+      }).then(data => {
+          setIsUsersLoading(false);
+          setLoadedUsers(data);
+      });
+  }, []);
+
+  // Keeps this fetch request from looping infinitely
+  useEffect(() => {
+      fetch('https://undefined-rest-api.herokuapp.com/api/restaurants/?format=json'
+      ).then(response => {
+          return response.json();
+      }).then(data => {
+          setIsRestaurantsLoading(false);
+          setLoadedRestaurants(data);
+          // console.log(loadedRestaurants)
+      });
+  }, []);
+
+  // Displays a temporary loading screen while fetch request is running
+  if (isUsersLoading || isRestaurantsLoading) {
+      return (
+          <section>
+              <p>Loading...</p>
+          </section>
+      );
+  }
+
+  let creator_id = location.pathname.substr(6)
+
+  function GetSpecificUser(userList) {
+    for (var user of userList) {
+        if (user.id == creator_id) {
+            return user
+        }
+    }
+  } 
+
+  let creator = GetSpecificUser(loadedUsers)
+
   return (
     <div>
       <NavBar />
@@ -16,7 +69,7 @@ function UserProfile() {
           />
           <div>
             <a className="mx-2 text-2xl font-semibold text-gray-700">
-              Jone Doe
+              {creator.name}
             </a>
           </div>
           <a>City, ST</a>
@@ -28,14 +81,7 @@ function UserProfile() {
           <a className="text-2xl p-1 ">Recs</a>
           <AddRecModal />
         </div>
-        <div className="grid grid-cols-3">
-          <UserRecommendations />
-          <UserRecommendations />
-          <UserRecommendations />
-          <UserRecommendations />
-          <UserRecommendations />
-          <UserRecommendations />
-        </div>
+        <SpecificUserRecs restaurants={loadedRestaurants} user={creator}/>
       </div>
       <Footer />
     </div>
