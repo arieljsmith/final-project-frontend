@@ -17,8 +17,6 @@ function SignupForm() {
     password: "",
   });
 
-  const navigate = useNavigate();
-
   const [submitted, setSubmitted] = useState(false);
 
   const handleFirstNameInputChange = (event) => {
