@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import axiosInstance, { AxiosInstance } from "../axios";
+import { useNavigate } from 'react-router-dom'
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
 function SigninForm() {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     email: "",
     password: "",
@@ -18,6 +21,21 @@ function SigninForm() {
   };
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log(values)
+    
+    axiosInstance
+      .post('token/', {
+        email: values.email,
+        password: values.password,
+      })
+      .then(res => {
+          localStorage.setItem('access_token', res.data.access);
+          localStorage.setItem('refresh_token', res.data.refresh);
+          axiosInstance.defaults.headers['Authorizaton'] = 
+                'JWT ' + localStorage.getItem('access_token');
+          navigate('/');
+          console.log(res); 
+      });
     setSubmitted(true);
   };
 
@@ -26,8 +44,8 @@ function SigninForm() {
       <NavBar />
       <div className="grid place-items-center  p-8  h-screen form-container">
         <div className="grid place-items-center">
-          <h1 className="text-4xl">Sign In</h1>
-          <a href="/signup">-Sign Up-</a>
+          <h1 className="text-4xl">Log In</h1>
+          {/* <a href="/signup">-Sign Up-</a> */}
         </div>
         <form
           className="grid grid-cols-1 grid-rows-6  place-items-center gap-2 register-form"

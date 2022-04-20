@@ -7,15 +7,15 @@ import PreviousMap from "postcss/lib/previous-map";
 
 
 
+
 function SignupForm() {
+  const navigate = useNavigate();
   const [values, setValues] = useState({
     name: "",
     // lastName: "",
     email: "",
     password: "",
   });
-
-  const navigate = useNavigate();
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -38,10 +38,13 @@ function SignupForm() {
         },
         body: JSON.stringify(values)
       })
-        .then((Response) => Response.json())
-    console.log(values);
-    setSubmitted(true);
-    navigate('/signin');
+        .then((Response) => {
+          // Response.json());
+          navigate('/signin');
+          console.log(values);
+          setSubmitted(true);
+        });
+
   };
 
 
