@@ -8,7 +8,16 @@ function UserProfile() {
     <div>
       <NavBar />
       <div>
+      <button
+            className="absolute left-0 w-auto px-4 py-2 mt-4 ml-4 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-white text-slate-400 rounded-full lg:w-auto hover:bg-slate-200 hover:text-slate-700 focus:outline-none focus:bg-slate-200 focus:text-slate-700"
+            onClick={() => {
+              window.history.back();
+            }}
+          >
+            &lt;
+          </button>
         <div className="grid place-items-center flex items-center">
+          
           <img
             className="object-cover h-48 m-2 rounded-full"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQrF3t4HTqY8rjh54a9PrakBAZsJ5gPFv2CQ&usqp=CAU"
