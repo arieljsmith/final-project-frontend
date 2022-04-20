@@ -72,6 +72,12 @@ function NavBar() {
 
           {/* Mobile Menu open: "block", Menu closed: "hidden" */}
           <div className="hidden -mx-4 lg:flex lg:items-center">
+          <a
+              href="/signup"
+              className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200"
+            >
+              Sign Up
+            </a>
             <a
               href="#"
               className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200"
@@ -90,7 +96,13 @@ function NavBar() {
               href="/signin"
               className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200"
             >
-              Sign Out
+              Login
+            </a>
+            <a
+              href="/logout"
+              className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200"
+            >
+              Logout
             </a>
           </div>
         </div>
