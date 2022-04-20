@@ -11,7 +11,7 @@ function NavBar() {
                 className="text-2xl font-bold text-white lg:text-3xl hover:text-gray-200"
                 href="/"
               >
-                Recco
+                Restaurant Recommendations
               </a>
             </div>
 
