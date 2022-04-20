@@ -28,7 +28,7 @@ function SignupForm() {
   };
   function handleSubmit(event) {
     event.preventDefault();
-      fetch('http://localhost:8000/api/users/', {
+      fetch('https://undefined-rest-api.herokuapp.com/api/users/', {
         method: 'POST',
         headers: {
           'Accept': 'application/json',
