@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { AxiosInstance } from "axios";
+import axiosInstance from "../axios";
 
 
 function AddCityModal() {
@@ -20,19 +22,12 @@ function AddCityModal() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch('https://undefined-rest-api.herokuapp.com/api/cities/', {
-        method: 'POST',
-        headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'accessToken',
-        },
-        body: JSON.stringify(values)
+    axiosInstance
+    .post('cities/',{
+      name: values.name,
     })
-        .then((response) => response.text())
-        .then((data) => console.log(data));
-    console.log(values)
-    setShowModal(false)
+    console.log(values);
+    setShowModal(false);
     }; 
 
 
