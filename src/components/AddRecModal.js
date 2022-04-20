@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, } from "react";
+
 
 
 
@@ -23,6 +24,8 @@ const AddRecModal = (props) => {
       console.log(data);
     });
   }, []);
+  console.log(loadedCities.name)
+  
 
 
   const [submitted, setSubmitted] = useState(false);
@@ -117,9 +120,8 @@ const AddRecModal = (props) => {
                         placeholder="Name"
                         name="name"
                         required
-                      >
-                        <option></option>)
-                      </select>
+                        >
+                        </select>
                     </div>
                     <div>
                       <button
