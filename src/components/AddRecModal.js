@@ -1,5 +1,6 @@
+import axios from "axios";
 import React, { useState, useEffect, } from "react";
-
+import axiosInstance from "../axios";
 
 
 
@@ -16,15 +17,21 @@ const AddRecModal = () => {
   console.log(loadedCities)
   // console.log(props.loadedCities.name)
   useEffect(() => {
-    fetch('https://undefined-rest-api.herokuapp.com/api/cities/?format=json'
-    ).then(response => {
-      return response.json();
-    }).then(data => {
-      setLoadedCities(data);
-      console.log(data);
-    });
-  }, []);
-  console.log(loadedCities.name)
+  //   fetch('https://undefined-rest-api.herokuapp.com/api/cities/?format=json'
+  //   ).then(response => {
+  //     return response.json();
+  //   }).then(data => {
+  //     setLoadedCities(data);
+  //     console.log(data);
+  //   });
+  // }, []);
+    axios.get('https://undefined-rest-api.herokuapp.com/api/cities/')
+      .then(res => {
+        setLoadedCities(res.data);
+        console.log(loadedCities)
+      });
+    }, [])
+
   
 
 
@@ -35,7 +42,7 @@ const AddRecModal = () => {
   };
 
   const handleCityInputChange = (event) => {
-    setValues({ ...values, name: event.target.value });
+    setValues({ ...values, city: event.target.value });
   };
 
   // function cityMap(props) {
@@ -51,23 +58,14 @@ const AddRecModal = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-    fetch("https://undefined-rest-api.herokuapp.com/api/restaurants/", {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'accessToken'
-        ,
-      },
-      body: JSON.stringify(values)
+    axiosInstance
+    .post('restaurants/',{
+      name: values.name,
+      city: values.city,
     })
-      .then((response) => response.json())
-      .then((data) => console.log(data));
-    console.log(values)
-    setShowModal(false)
-  };
-
-
+    console.log(values);
+    setShowModal(false);
+    }; 
 
 
 
@@ -123,9 +121,8 @@ const AddRecModal = () => {
                         name="name"
                         required
                         >
-                          
                           {loadedCities.map(city => (
-                            <option key={city.id}>{city.name}</option>
+                            <option key={city.id} value={city.id}>{city.name}</option>
                           ))}
                         </select>
                         
