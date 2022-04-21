@@ -88,7 +88,7 @@ function UserProfile() {
         </div>
         <div className="">
           <a className="text-2xl p-1 ">Recs</a>
-          <AddRecModal />
+          {/* <AddRecModal /> */}
         </div>
         <SpecificUserRecs restaurants={loadedRestaurants} user={creator}/>
       </div>

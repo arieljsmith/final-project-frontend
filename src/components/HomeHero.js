@@ -41,7 +41,7 @@ function HomeHero() {
                   placeholder="Search"
                   onChange={handleSearchInput}
                 />
-                <AddRecModal />
+                {/* <AddRecModal /> */}
               </div>
             </form>
             {/* SEARCH BAR END */}
