@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { AxiosInstance } from "axios";
 import axiosInstance from "../axios";
+
 
 
 function AddCityModal() {
@@ -16,8 +16,6 @@ function AddCityModal() {
   const handleNameInputChange = (event) => {
     setValues({ ...values, name: event.target.value });
   };
-
-
 
 
   function handleSubmit(event) {

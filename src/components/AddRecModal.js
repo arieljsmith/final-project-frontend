@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect, } from "react";
 import axiosInstance from "../axios";
+import jwt_decode from "jwt-decode";
 
 
 
@@ -13,18 +14,9 @@ const AddRecModal = () => {
   });
 
 
+  
   const [loadedCities, setLoadedCities] = useState([]);
-  console.log(loadedCities)
-  // console.log(props.loadedCities.name)
   useEffect(() => {
-  //   fetch('https://undefined-rest-api.herokuapp.com/api/cities/?format=json'
-  //   ).then(response => {
-  //     return response.json();
-  //   }).then(data => {
-  //     setLoadedCities(data);
-  //     console.log(data);
-  //   });
-  // }, []);
     axios.get('https://undefined-rest-api.herokuapp.com/api/cities/')
       .then(res => {
         setLoadedCities(res.data);
@@ -33,6 +25,12 @@ const AddRecModal = () => {
     }, [])
 
 
+  var token = localStorage.getItem('access_token');
+  var user = jwt_decode(token)
+  console.log(user.user_id)
+
+  const writeCities = loadedCities.filter(city => city.creator_id === user.user_id);
+  console.log(writeCities) 
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -44,15 +42,6 @@ const AddRecModal = () => {
     setValues({ ...values, city: event.target.value });
   };
 
-  // function cityMap(props) {
-  //   return (
-  //   props.restaurants.map((city) => (
-  //       key={restaurant.id}
-  //       id={restaurant.id}
-  //       name={city.name}
-  //       city={restaurant.city}
-  //       creator={restaurant.creator}
-  //       creator_id={restaurant.creator_id}))}
 
 
   function handleSubmit(event) {
@@ -120,7 +109,7 @@ const AddRecModal = () => {
                         name="name"
                         required
                         >
-                          {loadedCities.map(city => (
+                          {writeCities.map(city => (
                             <option key={city.id} value={city.id}>{city.name}</option>
                           ))}
                         </select>
