@@ -3,7 +3,7 @@ import axiosInstance from "../axios";
 import { useNavigate } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import jwt_decode from "jwt-decode";
+
 
 function SigninForm() {
   const navigate = useNavigate();
@@ -32,7 +32,6 @@ function SigninForm() {
       .then(res => {
           localStorage.setItem('access_token', res.data.access);
           localStorage.setItem('refresh_token', res.data.refresh);
-          localStorage.setItem('user', jwt_decode(res.data.access));
           axiosInstance.defaults.headers['Authorizaton'] = 
                 'JWT ' + localStorage.getItem('access_token');
           navigate('/');

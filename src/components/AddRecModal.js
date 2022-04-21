@@ -25,8 +25,8 @@ const AddRecModal = () => {
     }, [])
 
   
-  var user = localStorage.getItem('access_token');
-  // var user = jwt_decode(token);
+  var token = localStorage.getItem('access_token');
+  var user = jwt_decode(token);
   console.log(user.user_id)
 
   const writeCities = loadedCities.filter(city => city.creator_id === user.user_id);
