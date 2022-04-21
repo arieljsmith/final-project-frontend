@@ -18,14 +18,15 @@ function AddCityModal() {
   };
 
 
-  function handleSubmit(event) {
-    event.preventDefault();
+  function handleSubmit() {
+    // event.preventDefault();
     axiosInstance
     .post('cities/',{
       name: values.name,
     })
     console.log(values);
     setShowModal(false);
+    window.location.reload()
     }; 
 
 
