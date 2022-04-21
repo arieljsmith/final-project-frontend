@@ -32,7 +32,6 @@ const AddRecModal = () => {
       });
     }, [])
 
-  
 
 
   const [submitted, setSubmitted] = useState(false);
