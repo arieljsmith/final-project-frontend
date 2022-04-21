@@ -14,7 +14,6 @@ const AddRecModal = () => {
   });
 
 
-  
   const [loadedCities, setLoadedCities] = useState([]);
   useEffect(() => {
     axios.get('https://undefined-rest-api.herokuapp.com/api/cities/')
