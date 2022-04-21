@@ -28,7 +28,7 @@ function NavBar() {
                             {/* <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">Add Recommendation</a> */}
                             <AddRecModal />
                             {/* <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">Add Friend</a> */}
-                            <AddFriendModal />
+                            {/* <AddFriendModal /> */}
                             <AddCityModal />
                             <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200">Sign Out</a>
                         </div>
