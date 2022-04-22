@@ -24,12 +24,15 @@ const AddRecModal = () => {
       });
     }, [])
 
-
+  
   var token = localStorage.getItem('access_token');
-  var user = jwt_decode(token)
-  console.log(user.user_id)
+  if (token !== null){
+  var user = jwt_decode(token);}
+  else { var user = {user_id:'0'}}
+  let logged = user.user_id
+  console.log(logged)
 
-  const writeCities = loadedCities.filter(city => city.creator_id === user.user_id);
+  const writeCities = loadedCities.filter(city => city.creator_id === logged);
   console.log(writeCities) 
 
   const [submitted, setSubmitted] = useState(false);
