@@ -14,7 +14,7 @@ const AddRecModal = () => {
   });
 
 
-  
+
   const [loadedCities, setLoadedCities] = useState([]);
   useEffect(() => {
     axios.get('https://undefined-rest-api.herokuapp.com/api/cities/')
@@ -22,18 +22,22 @@ const AddRecModal = () => {
         setLoadedCities(res.data);
         console.log(loadedCities)
       });
-    }, [])
+  }, [])
 
-  
+
   var token = localStorage.getItem('access_token');
-  if (token !== null){
-  var user = jwt_decode(token);}
-  else { var user = {user_id:'0'}}
+  if (token !== null) {
+    var user = jwt_decode(token);
+  }
+  else { var user = { user_id: '0' } }
   let logged = user.user_id
   console.log(logged)
 
   const writeCities = loadedCities.filter(city => city.creator_id === logged);
-  console.log(writeCities) 
+  writeCities.sort((a,b) => a.name.localeCompare(b.name))
+
+
+  console.log(writeCities)
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -49,13 +53,13 @@ const AddRecModal = () => {
   function handleSubmit(event) {
     event.preventDefault();
     axiosInstance
-    .post('restaurants/',{
-      name: values.name,
-      city: values.city,
-    })
+      .post('restaurants/', {
+        name: values.name,
+        city: values.city,
+      })
     console.log(values);
     setShowModal(false);
-    }; 
+  };
 
 
 
@@ -110,12 +114,12 @@ const AddRecModal = () => {
                         placeholder="Name"
                         name="name"
                         required
-                        >
-                          {writeCities.map(city => (
-                            <option key={city.id} value={city.id}>{city.name}</option>
-                          ))}
-                        </select>
-                        
+                      >
+                        {writeCities.map(city => (
+                          <option key={city.id} value={city.id}>{city.name}</option>
+                        ))}
+                      </select>
+
                     </div>
                     <div>
                       <button
