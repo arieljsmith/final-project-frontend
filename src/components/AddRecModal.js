@@ -68,7 +68,7 @@ const AddRecModal = () => {
       >
         Add Recommendation
       </button> */}
-      <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200" onClick={() => setShowModal(true)}>Add Recommendation</a>
+      <a href="#" className="text-gray-300 px-3 py-2 rounded-md text-sm font-medium" onClick={() => setShowModal(true)}>Add Recommendation</a>
       {showModal ? (
         <>
           <div className="flex justify-center backdrop-blur items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">

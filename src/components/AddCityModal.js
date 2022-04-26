@@ -39,7 +39,7 @@ function AddCityModal() {
       >
         +
       </button> */}
-      <a href="#" className="block mx-4 mt-2 text-sm text-white capitalize lg:mt-0 hover:text-gray-200" onClick={() => setShowModal(true)}>Add City</a>
+      <a href="#" className="text-gray-300 px-3 py-2 rounded-md text-sm font-medium" onClick={() => setShowModal(true)}>Add City</a>
 
       {showModal ? (
         <>
