@@ -15,7 +15,7 @@ function SigninForm() {
   const [submitted, setSubmitted] = useState(false);
 
   const handleEmailInputChange = (event) => {
-    setValues({ ...values, email: event.target.value });
+    setValues({ ...values, email: event.target.value.toLowerCase() });
   };
   const handlePasswordInputChange = (event) => {
     setValues({ ...values, password: event.target.value });
