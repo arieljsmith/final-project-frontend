@@ -4,10 +4,22 @@ import AddRecModal from './AddRecModal';
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import jwt_decode from "jwt-decode";
+
+var token = localStorage.getItem('access_token');
+if (token !== null) {
+  var logged_user = jwt_decode(token);
+}
+else { var logged_user = { user_id: '0' } }
+let logged = logged_user.user_id
+console.log(logged)
+const user_page = 'user/'+logged
+
+
 
 const navigation = [
   // { name: 'Dashboard', href: '#', current: true },
-  { name: 'My List', href: '/user/1', current: false },
+  { name: 'My List', href: user_page, current: false },
   // { name: 'Add Recommendation', href:'#', current: false },
   // { name: 'Add City', href: '#', current: false },
 ]
@@ -67,7 +79,7 @@ export default function Example() {
                       </a>
                     ))}
                     <AddRecModal />
-                    <AddCityModal/>
+                    <AddCityModal />
                   </div>
                 </div>
               </div>
