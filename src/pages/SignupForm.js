@@ -60,7 +60,7 @@ export default function SignunForm() {
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign up for a New Account</h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Or if you already have an account,{' '}
-              <a href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+              <a href="/signin" className="font-medium text-indigo-600 hover:text-indigo-500">
                 Sign In
               </a>
             </p>
@@ -121,15 +121,7 @@ export default function SignunForm() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between">
 
-
-              <div className="text-sm">
-                <a href="/signin" className="font-medium text-indigo-600 hover:text-indigo-500">
-                  Forgot your password?
-                </a>
-              </div>
-            </div>
 
             <div>
               <button
