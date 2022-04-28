@@ -1,25 +1,22 @@
-import { Result } from "postcss";
 import React, { useState } from "react";
+import axiosInstance from "../axios";
+import { useNavigate } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import { useNavigate } from 'react-router-dom';
 import PreviousMap from "postcss/lib/previous-map";
 
 
-
-
-function SignupForm() {
+export default function SignunForm() {
   const navigate = useNavigate();
   const [values, setValues] = useState({
     name: "",
-    // lastName: "",
     email: "",
     password: "",
   });
 
   const [submitted, setSubmitted] = useState(false);
 
-  const handleFirstNameInputChange = (event) => {
+  const handleNameInputChange = (event) => {
     setValues({ ...values, name: event.target.value });
   };
   const handleEmailInputChange = (event) => {
@@ -47,73 +44,106 @@ function SignupForm() {
 
   };
 
-
-  
   return (
-    <div>
-      <NavBar />
-      <div className="grid place-items-center p-8 h-screen form-container">
-        <div className="grid space-y-4 place-items-center">
-          <h1 className="text-4xl text-center">Sign Up</h1>
-          <a className="w-full text-center" href="/signin">
-            -Sign In-
-          </a>
-          <form
-            className="grid grid-cols-2 grid-rows-4 place-items-center gap-x-2 gap-y-4 register-form"
-            onSubmit={handleSubmit}
-            method="post"
-          >
-            <div className="col-span-2">
-              <p>Name</p>
-              <input
-                onChange={handleFirstNameInputChange}
-                values={values.name}
-                className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 w leading-tight focus:outline-none focus:shadow-outline form-field"
-                placeholder="Name"
-                name="name"
-                required
-              />
+    
+    <>
+    <NavBar />
+      <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      
+        <div className="max-w-md w-full space-y-8">
+          <div>
+            <img
+              className="mx-auto h-12 w-auto"
+              src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+              alt="Workflow"
+            />
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign up for a New Account</h2>
+            <p className="mt-2 text-center text-sm text-gray-600">
+              Or if you already have an account,{' '}
+              <a href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
+                Sign In
+              </a>
+            </p>
+          </div>
+          <form className="mt-8 space-y-6" action="#"  onSubmit={handleSubmit} method="POST">
+            <input type="hidden" name="remember" defaultValue="true" />
+            <div className="rounded-md shadow-sm -space-y-px">
+              <p className="mt-2 text-base text-gray-600">Name</p>
+              <div>
+                <label htmlFor="email-address" className="sr-only">
+                  Name
+                </label>
+                <input
+                  onChange={handleNameInputChange}
+                  values={values.name}
+                  id="name"
+                  name="name"
+                  type="text"
+                  autoComplete="name"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Name"
+                />
+              </div>
+              <p className="mt-2 text-base text-gray-600">Email</p>
+              <div>
+                <label htmlFor="email-address" className="sr-only">
+                  Email address
+                </label>
+                <input
+                  onChange={handleEmailInputChange}
+                  values={values.email}
+                  id="email-address"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900  focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Email address"
+                />
+              </div>
+              <p className="mt-2 text-base text-gray-600">Password</p>
+              <div>
+                <label htmlFor="password" className="sr-only">
+                  Password
+                </label>
+                <input
+                  onChange={handlePasswordInputChange}
+                  values={values.password}
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  placeholder="Password"
+                />
+              </div>
             </div>
-            <div className="col-span-2">
-              <p>Email</p>
-              <input
-                onChange={handleEmailInputChange}
-                values={values.email}
-                className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 w leading-tight focus:outline-none focus:shadow-outline form-field"
-                placeholder="Email"
-                name="email"
-                required
-              />
+
+            <div className="flex items-center justify-between">
+
+
+              <div className="text-sm">
+                <a href="/signin" className="font-medium text-indigo-600 hover:text-indigo-500">
+                  Forgot your password?
+                </a>
+              </div>
             </div>
-            <div className="col-span-2">
-              <p>Password</p>
-              <input
-                onChange={handlePasswordInputChange}
-                values={values.password}
-                className="w-96 shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
-                placeholder="Password"
-                name="password"
-                type='password'
-                required
-              />
+
+            <div>
+              <button
+                type="submit"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              >
+                Sign Up
+              </button>
             </div>
-            <button
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold col-span-2 py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
-              type="submit"
-            >
-              Sign Up
-            </button>
           </form>
         </div>
       </div>
-      {submitted ? (
-        <div className="success-message">
-          Success! I currently do nothing at the moment
-        </div>
-      ) : null}
-      <Footer />
-    </div>
-  );
+      
+    </>
+  )
 }
 
-export default SignupForm;
