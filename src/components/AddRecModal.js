@@ -30,10 +30,10 @@ const AddRecModal = () => {
     var user = jwt_decode(token);
   }
   else { var user = { user_id: '0' } }
-  let logged = user.user_id
+  let logged_in = user.user_id
   console.log(logged)
 
-  const writeCities = loadedCities.filter(city => city.creator_id === logged);
+  const writeCities = loadedCities.filter(city => city.creator_id === logged_in);
   writeCities.sort((a,b) => a.name.localeCompare(b.name))
 
 
