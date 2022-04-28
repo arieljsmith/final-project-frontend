@@ -3,22 +3,6 @@ import axiosInstance from "../axios";
 import { useNavigate } from 'react-router-dom';
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
 import { LockClosedIcon } from '@heroicons/react/solid'
 
 export default function SigninForm() {
@@ -71,7 +55,7 @@ export default function SigninForm() {
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
             <p className="mt-2 text-center text-sm text-gray-600">
               Or{' '}
-              <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+              <a href="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
                 Sign Up for a new account
               </a>
             </p>
@@ -151,58 +135,3 @@ export default function SigninForm() {
     </>
   )
 }
-
-
-  
-
-  // return (
-  //   <div>
-  //     <NavBar />
-  //     <div className="grid place-items-center  p-8  h-screen form-container">
-  //       <div className="grid place-items-center">
-  //         <h1 className="text-4xl">Log In</h1>
-  //         {/* <a href="/signup">-Sign Up-</a> */}
-  //       </div>
-  //       <form
-  //         className="grid grid-cols-1 grid-rows-6  place-items-center gap-2 register-form"
-  //         onSubmit={handleSubmit}
-  //       >
-  //         <div>
-  //           <p>Email</p>
-  //           <input
-
-  //             className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
-  //             placeholder="Email"
-  //             name="email"
-  //             required
-  //           />
-  //         </div>
-  //         <div>
-  //           <p>Password</p>
-  //           <input
-
-  //             className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
-  //             placeholder="Password"
-  //             name="password"
-  //             type="password"
-  //             required
-  //           />
-  //         </div>
-  //         <button
-  //           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
-  //           type="submit"
-  //         >
-  //           Sign In
-  //         </button>
-  //         {submitted ? (
-  //           <div className="success-message">
-  //             Success! I currently do nothing at the moment.
-  //           </div>
-  //         ) : null}
-  //       </form>
-  //     </div>
-  //     <Footer />
-  //   </div>
-  // );
-// }
-
