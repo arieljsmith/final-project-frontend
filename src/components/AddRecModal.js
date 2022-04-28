@@ -10,7 +10,7 @@ const AddRecModal = () => {
 
   const [values, setValues] = useState({
     name: "",
-    city: '',
+    city:'',
   });
 
 
@@ -27,17 +27,19 @@ const AddRecModal = () => {
 
   var token = localStorage.getItem('access_token');
   if (token !== null) {
-    var user = jwt_decode(token);
+    var userIn = jwt_decode(token);
   }
-  else { var user = { user_id: '0' } }
-  let logged_in = user.user_id
+  else { var userIn = { userIn_id: '0' } }
+  let logged_in = userIn.user_id
   console.log(logged_in)
 
   const writeCities = loadedCities.filter(city => city.creator_id === logged_in);
   writeCities.sort((a,b) => a.name.localeCompare(b.name))
 
+  console.log(writeCities);
+  console.log(writeCities.map(restaurants => (restaurants.id)));
 
-  console.log(writeCities)
+  console.log(values.city)
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -115,8 +117,8 @@ const AddRecModal = () => {
                         name="name"
                         required
                       >
-                        {writeCities.map(city => (
-                          <option key={city.id} value={city.id}>{city.name}</option>
+                        {writeCities.map(restaurants => (
+                          <option key={restaurants.id} value={restaurants.id}>{restaurants.name}</option>
                         ))}
                       </select>
 
