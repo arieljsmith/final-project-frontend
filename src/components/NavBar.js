@@ -13,7 +13,7 @@ if (token !== null) {
 else { var logged_user = { user_id: '0' } }
 let logged = logged_user.user_id
 console.log(logged)
-const user_page = 'user/'+logged
+var user_page = 'user/'+logged
 
 
 
