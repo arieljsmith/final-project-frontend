@@ -31,7 +31,7 @@ const AddRecModal = () => {
   }
   else { var user = { user_id: '0' } }
   let logged_in = user.user_id
-  console.log(logged)
+  console.log(logged_in)
 
   const writeCities = loadedCities.filter(city => city.creator_id === logged_in);
   writeCities.sort((a,b) => a.name.localeCompare(b.name))
