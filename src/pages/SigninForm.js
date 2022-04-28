@@ -35,6 +35,7 @@ function SigninForm() {
           axiosInstance.defaults.headers['Authorizaton'] = 
                 'JWT ' + localStorage.getItem('access_token');
           navigate('/');
+          window.location.reload();
           console.log(res); 
       });
     setSubmitted(true);
