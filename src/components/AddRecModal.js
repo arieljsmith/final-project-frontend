@@ -9,7 +9,7 @@ const AddRecModal = () => {
   const [showModal, setShowModal] = useState(false);
 
   const [values, setValues] = useState({
-    name: "",
+    name:"",
     city:'',
   });
 
@@ -37,9 +37,9 @@ const AddRecModal = () => {
   writeCities.sort((a,b) => a.name.localeCompare(b.name))
 
   console.log(writeCities);
-  console.log(writeCities.map(restaurants => (restaurants.id)));
+  console.log(writeCities.map(city => (city.id)));
 
-  console.log(values.city)
+  console.log(values.city);
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -114,11 +114,11 @@ const AddRecModal = () => {
                         values={values.city}
                         className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
                         placeholder="Name"
-                        name="name"
+                        name="city"
                         required
                       >
-                        {writeCities.map(restaurants => (
-                          <option key={restaurants.id} value={restaurants.id}>{restaurants.name}</option>
+                        {writeCities.map(city => (
+                          <option key={city.id} value={city.id}>{city.name}</option>
                         ))}
                       </select>
 
