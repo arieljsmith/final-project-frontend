@@ -1,10 +1,22 @@
 import { Link } from "react-router-dom";
 
 function HomeFriendRecommendation(props) {
+
+    let restaurantImageUrl;
+    console.log(restaurantImageUrl);
+
+    if (!props.image) {
+        restaurantImageUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAMFBMVEUUFBQVFRUlJCQgHx8aGRksKiocGxsREREjIiIoJiYtKysYGBgbGxspKCgwLi4sKyvyzVj+AAABiElEQVR4nO3W246bMBQFUF/wDfDk//+2Jppp1L60D1XSUdZ6QGAfS3jrGBECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMD/rbX255onvMd30PeybzX9OniMr3juM3E80vq99K2k2kLZUqtpCy33uOLL7Rg9r4xSXsPtSHmuS21H7SGcKdSej1Ud+npc42eIa8mr9/EU6Qzn3FKYW4k9nXu71Z6OjzP1ttfU18ytjhHKOWq+5Sus+FHLXIUp5xH2OmYrZ3+PfkulzHimlsdtK6s/4p7SbR3DOFdTtbLaqrc4akljhdPuYY227sYR07hqwryWlLdorXW82voQ5dTG6q2WYwnxuId1zOuSVh7b3EY4Yl6N9Qgr7jGUVXjMcFtLXr2Pp0g1XF/tbZ/7ee5ztF72vF1htTn3bfXcnGXc77/CmldYM441cU3O+5JX7+PJ2s/L5+PnfYutPZ4ehdf4kVfbvcUJ/BfS+uK9+h2+j7/4pQUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAeLkfFQsJq3lFqIMAAAAASUVORK5CYII=";
+    } else {
+        restaurantImageUrl = props.image;
+    }
+
+    console.log(restaurantImageUrl);
+
     return (
         <div className="relative max-w-2xl m-2 overflow-hidden bg-white rounded-lg shadow-md">
             <button className="absolute right-0 w-auto px-3.5 py-2 mt-2 mr-2 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-white text-amber-500 rounded-full lg:w-auto hover:bg-amber-500 hover:text-white focus:outline-none focus:bg-amber-500 focus:text-white">*</button>
-            <img className="object-cover w-full h-32" src="https://images.unsplash.com/photo-1550439062-609e1531270e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Article" />
+            <img className="object-cover w-full h-32" src={restaurantImageUrl} alt="Article" />
 
             <div className="p-6">
                 <div>
