@@ -51,15 +51,16 @@ export default function Example() {
                   <a href="/">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                    
+                    // src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    src="../recologo.png"
                     alt="RECCO"
                   />
                   </a>
                   <a href="/">
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    // src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
+                    src="../recologo.png"
                     alt="RECCO"
                   />
                   </a>
