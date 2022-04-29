@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 function HomeFriendRecommendation(props) {
 
@@ -9,6 +10,64 @@ function HomeFriendRecommendation(props) {
     } else {
         restaurantImageUrl = props.image;
     }
+
+    // //====================
+    // // USER IMAGE STUFF
+    // //====================
+    const [isUsersLoading, setIsUsersLoading] = useState(true);
+    const [loadedUsers, setLoadedUsers] = useState([]);
+    // const location = useLocation()
+  
+    // Keeps this fetch request from looping infinitely
+    useEffect(() => {
+        fetch('https://undefined-rest-api.herokuapp.com/api/users/?format=json'
+        ).then(response => {
+            return response.json();
+        }).then(data => {
+            setIsUsersLoading(false);
+            setLoadedUsers(data);
+        });
+    }, []);
+  
+    // Displays a temporary loading screen while fetch request is running
+    if (isUsersLoading) {
+        return (
+            <section>
+                <p>Loading...</p>
+            </section>
+        );
+    }
+  
+    let creator_id = props.creator_id
+  
+    function GetSpecificUser(userList) {
+      for (var user of userList) {
+          if (user.id == creator_id) {
+              return user
+          }
+      }
+    } 
+  
+    let creator = GetSpecificUser(loadedUsers)
+
+    console.log(creator)
+
+    // ===================
+
+    let userImageUrl;
+    // console.log (userImageUrl);
+
+    if (!creator.image) {
+        userImageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
+    } else {
+        userImageUrl = creator.image;
+    }
+
+    console.log(userImageUrl);
+
+    //====================
+    // END USER IMAGE STUFF
+    //====================
 
     return (
         <div className="relative max-w-2xl m-2 overflow-hidden bg-white rounded-lg shadow-md recco-roboto-text">
@@ -24,7 +83,7 @@ function HomeFriendRecommendation(props) {
                 <div className="mt-4">
                     <div className="flex items-center">
                         <div className="flex items-center">
-                            <img className="object-cover h-10 rounded-full" src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60" alt="Avatar" />
+                            <img className="object-cover h-10 rounded-full" src={userImageUrl} alt="Avatar" />
                             <div>
                                 <p className="mx-3 text-[10px] text-gray-400">Recommended by</p>
                                 <Link className="mx-3"
