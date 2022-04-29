@@ -15,7 +15,7 @@ function HomeFriendRecommendation(props) {
 
     return (
         <div className="relative max-w-2xl m-2 overflow-hidden bg-white rounded-lg shadow-md recco-roboto-text">
-            <button className="absolute right-0 w-auto px-3.5 py-2 mt-2 mr-2 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-white text-amber-500 rounded-full lg:w-auto hover:bg-amber-500 hover:text-white focus:outline-none focus:bg-amber-500 focus:text-white">*</button>
+            {/* <button className="absolute right-0 w-auto px-3.5 py-2 mt-2 mr-2 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-white text-amber-500 rounded-full lg:w-auto hover:bg-amber-500 hover:text-white focus:outline-none focus:bg-amber-500 focus:text-white">*</button> */}
             <img className="object-cover w-full h-32" src={restaurantImageUrl} alt="Article" />
 
             <div className="p-6">
