@@ -11,6 +11,7 @@ const AddRecModal = () => {
   const [values, setValues] = useState({
     name:"",
     city:'',
+    image:"",
   });
 
 
@@ -51,6 +52,9 @@ const AddRecModal = () => {
     setValues({ ...values, city: event.target.value });
   };
 
+  const handleImageInputChange = (event) => {
+    setValues({ ...values, image: event.target.value });
+  };
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -58,6 +62,7 @@ const AddRecModal = () => {
       .post('restaurants/', {
         name: values.name,
         city: values.city,
+        image: values.image,
       })
     console.log(values);
     setShowModal(false);
@@ -111,14 +116,14 @@ const AddRecModal = () => {
                     <div>
                       <p>Image URL</p>
                       <input
-                        // onChange={handleImageInputChange}
-                        // values={values.image}
+                        onChange={handleImageInputChange}
+                        values={values.image}
                         className="shadow apperance-none border rounded  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline form-field"
                         placeholder="Image URL"
                         name="image"
                       />
                     </div>
-                    
+
                     <div>
                       <p>City</p>
                       <select
