@@ -16,7 +16,7 @@ function SpecificUserRecs(props) {
     console.log(userRestaurants);
 
     return (
-        <div className="grid grid-cols-2 md:grid-cols-4 mt-4 mr-4 ml-4 mb-14">
+        <div className="grid grid-cols-2 md:grid-cols-4 mt-4 mr-4 ml-4 mb-14 lg:mr-24 lg:ml-24">
             {userRestaurants?.map((restaurant) => (
                 <HomeFriendRecommendation
                     key={restaurant.id}
