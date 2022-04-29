@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.recco-word-mark {
+    font-family: 'Lobster', cursive;
+}
+
+.recco-hero-body-text {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+}
+
+.recco-roboto-text {
+    font-family: 'Roboto', sans-serif;
+}

@@ -21,15 +21,11 @@ function HomeHero() {
       >
         <div className="flex items-center justify-center w-full h-full bg-gray-900 bg-opacity-50">
           <div className="text-center">
-            <h1 className="text-2xl font-semibold text-white uppercase lg:text-3xl">
-              Restaurant Recommendations
+            <h1 className="text-8xl font-semibold text-white lg:text-9xl recco-word-mark">
+              Recco
             </h1>
-            <p className="mt-3 text-gray-100 m-12">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Urna
-              duis convallis convallis tellus id interdum. Velit dignissim
-              sodales ut eu sem. Amet, consectetur adipiscing elit, sed do
-              eiusmod.
+            <p className="text-base lg:text-xl mt-3 text-gray-100 m-6 recco-hero-body-text">
+              Restaurant recommendations from people you trust
             </p>
             {/* SEARCH BAR START */}
             <form onSubmit={SearchLocation}>
@@ -38,7 +34,7 @@ function HomeHero() {
                   className="border-2 border-gray-300 bg-white h-10 px-5 pr-4 rounded-lg text-sm focus:outline-none inline"
                   type="search"
                   name="search"
-                  placeholder="Search"
+                  placeholder="Search Locations"
                   onChange={handleSearchInput}
                 />
                 {/* <AddRecModal /> */}
