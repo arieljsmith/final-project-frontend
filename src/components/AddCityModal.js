@@ -43,7 +43,7 @@ function AddCityModal() {
 
       {showModal ? (
         <>
-          <div className="flex justify-center backdrop-blur items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="flex justify-center backdrop-blur items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none recco-roboto-text">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="text-left flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
@@ -52,7 +52,7 @@ function AddCityModal() {
                     className="bg-transparent border-0 text-black float-right"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="w-auto px-3.5 py-2 mb-4 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-rose-600 rounded-full lg:w-auto hover:bg-rose-500 focus:outline-none focus:bg-rose-500">
+                    <span className="w-auto px-3.5 py-2 mb-4 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-red-600 rounded-full lg:w-auto hover:bg-rose-500 focus:outline-none focus:bg-rose-500">
                       x
                     </span>
                   </button>
@@ -74,7 +74,7 @@ function AddCityModal() {
                       />
                     </div>
                     <button
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
+                      className="bg-lime-600 hover:bg-lime-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
                       type="submit"
                       // onClick={() => setShowModal(false)}
                     >

@@ -79,19 +79,19 @@ const AddRecModal = () => {
       >
         Add Recommendation
       </button> */}
-      <a href="#" className="text-gray-100 px-3 py-2 rounded-md text-sm font-medium" onClick={() => setShowModal(true)}>Add Recommendation</a>
+      <a href="#" className="text-gray-100 px-3 py-2 rounded-md text-sm font-medium recco-roboto-text" onClick={() => setShowModal(true)}>Add Recommendation</a>
       {showModal ? (
         <>
-          <div className="flex justify-center backdrop-blur items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none">
+          <div className="flex justify-center backdrop-blur items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none recco-roboto-text">
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 <div className="text-left flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t ">
-                  <h3 className="text-3xl font=semibold">Add Recommendation</h3>
+                  <h3 className="text-3xl font=semibold recco-roboto-text">Add Recommendation</h3>
                   <button
-                    className="bg-transparent border-0 text-black float-right"
+                    className="bg-transparent border-0 text-black float-right mt-1 ml-4"
                     onClick={() => setShowModal(false)}
                   >
-                    <span className="w-auto px-3.5 py-2 mb-4 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-rose-600 rounded-full lg:w-auto hover:bg-rose-500 focus:outline-none focus:bg-rose-500">
+                    <span className="w-auto px-3.5 py-2 mb-4 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-red-600 rounded-full lg:w-auto hover:bg-rose-500 focus:outline-none focus:bg-rose-500">
                       x
                     </span>
                   </button>
@@ -144,7 +144,7 @@ const AddRecModal = () => {
 
                     <div>
                       <button
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
+                        className="bg-lime-600 hover:bg-lime-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
                         type="submit"
                       // onClick={() => setShowModal(false)}
                       >
@@ -153,7 +153,7 @@ const AddRecModal = () => {
                     </div>
                     {submitted ? (
                       <div className="success-message">
-                        Success! I currently do nothing at the moment.
+                        Success!
                       </div>
                     ) : null}
                   </form>
