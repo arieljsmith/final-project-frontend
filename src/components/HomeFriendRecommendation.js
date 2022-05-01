@@ -16,6 +16,7 @@ function HomeFriendRecommendation(props) {
     // //====================
     const [isUsersLoading, setIsUsersLoading] = useState(true);
     const [loadedUsers, setLoadedUsers] = useState([]);
+
     // const location = useLocation()
   
     // Keeps this fetch request from looping infinitely
@@ -28,16 +29,23 @@ function HomeFriendRecommendation(props) {
             setLoadedUsers(data);
         });
     }, []);
-  
-    // Displays a temporary loading screen while fetch request is running
-    if (isUsersLoading) {
-        return (
-            <section>
-                <p>Loading...</p>
-            </section>
-        );
-    }
-  
+
+    // ===================
+    // STORE IN LOCALSTORAGE
+    // ===================
+
+    useEffect(() => {
+        localStorage.setItem("users", JSON.stringify(loadedUsers))
+    }, [loadedUsers]);
+
+    // ===================
+    // END STORE IN LOCALSTORAGE
+    // ===================
+
+    // ===================
+    // GET SPECIFIC USER
+    // ===================
+
     let creator_id = props.creator_id
   
     function GetSpecificUser(userList) {
@@ -46,11 +54,18 @@ function HomeFriendRecommendation(props) {
               return user
           }
       }
-    } 
+    }; 
   
-    let creator = GetSpecificUser(loadedUsers)
+    let locallySavedUsers = localStorage.getItem("users");
+    let parsedLocSavedUsers = JSON.parse(locallySavedUsers);
+
+    let creator = GetSpecificUser(parsedLocSavedUsers);
 
     console.log(creator)
+
+    // ===================
+    // END GET SPECIFIC USER
+    // ===================
 
     // ===================
 
@@ -64,6 +79,15 @@ function HomeFriendRecommendation(props) {
     }
 
     console.log(userImageUrl);
+  
+    // Displays a temporary loading screen while fetch request is running
+    if (isUsersLoading) {
+        return (
+            <section>
+                <p>Loading...</p>
+            </section>
+        );
+    }
 
     //====================
     // END USER IMAGE STUFF
