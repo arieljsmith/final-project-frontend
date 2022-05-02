@@ -21,6 +21,7 @@ function SpecificUserRecs(props) {
                 <HomeFriendRecommendation
                     key={restaurant.id}
                     id={restaurant.id}
+                    image={restaurant.image}
                     name={restaurant.name}
                     city={restaurant.city}
                     creator={restaurant.creator}

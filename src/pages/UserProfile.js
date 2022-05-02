@@ -36,6 +36,8 @@ function UserProfile() {
       });
   }, []);
 
+
+
   // Displays a temporary loading screen while fetch request is running
   if (isUsersLoading || isRestaurantsLoading) {
       return (
@@ -56,8 +58,8 @@ function UserProfile() {
   } 
 
   let creator = GetSpecificUser(loadedUsers)
-
-  // IMAGE STUFF
+  
+  // USER IMAGE STUFF
   let userImageUrl;
 
   if (!creator?.image) {
@@ -67,7 +69,7 @@ function UserProfile() {
           userImageUrl = creator?.image;
       }
   }
-  // END IMAGE STUFF
+  // END USER IMAGE STUFF
 
   return (
     <div>
