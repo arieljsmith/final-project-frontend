@@ -83,14 +83,14 @@ function UserProfile() {
           >
             &lt;
           </button>
-        <div className="grid place-items-center flex items-center">
+        <div className="grid place-items-center flex items-center m-10">
           
           <img
             className="object-cover h-48 mt-10 mb-4 rounded-full"
             src={userImageUrl}
             alt="Avatar"
           />
-          <div className="mb-2">
+          <div>
             <a className="text-2xl font-semibold text-gray-700">
               {creator.name}
             </a>

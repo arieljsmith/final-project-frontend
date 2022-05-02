@@ -1,33 +1,95 @@
-import AddFriendModal from './AddFriendModal';
-import AddCityModal from './AddCityModal';
-import AddRecModal from './AddRecModal';
-import { Fragment } from 'react'
-import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
+import AddFriendModal from "./AddFriendModal";
+import AddCityModal from "./AddCityModal";
+import AddRecModal from "./AddRecModal";
+import { Fragment } from "react";
+import { Disclosure, Menu, Transition } from "@headlessui/react";
+import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
+import { useState, useEffect } from "react";
 import jwt_decode from "jwt-decode";
 
-var token = localStorage.getItem('access_token');
+var token = localStorage.getItem("access_token");
 if (token !== null) {
   var logged_user = jwt_decode(token);
+} else {
+  var logged_user = { user_id: "0" };
 }
-else { var logged_user = { user_id: '0' } }
-let logged = logged_user.user_id
-var user_page = 'user/'+logged
+let logged = logged_user.user_id;
+var user_page = "user/" + logged;
 
-
+// console.log(logged_user)
 
 const navigation = [
   // { name: 'Dashboard', href: '#', current: true },
-  { name: 'My List', href: user_page, current: false },
+  { name: "My List", href: user_page, current: false }
   // { name: 'Add Recommendation', href:'#', current: false },
   // { name: 'Add City', href: '#', current: false },
-]
+];
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(" ");
 }
 
 export default function Example() {
+  // ===================
+  // FETCH USERS
+  // ===================
+  const [isUsersLoading, setIsUsersLoading] = useState(true);
+  const [loadedUsers, setLoadedUsers] = useState([]);
+
+  // Keeps this fetch request from looping infinitely
+  useEffect(() => {
+    fetch("https://undefined-rest-api.herokuapp.com/api/users/?format=json")
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setIsUsersLoading(false);
+        setLoadedUsers(data);
+      });
+  }, []);
+  // ===================
+  // END FETCH USERS
+  // ===================
+
+  // ===================
+  // GET SPECIFIC USER
+  // ===================
+
+  let logged_user_id = logged_user.user_id;
+
+  function GetSpecificUser(userList) {
+    for (var user of userList) {
+      if (user.id == logged_user_id) {
+        return user;
+      }
+    }
+  }
+
+  var current_user = GetSpecificUser(loadedUsers);
+
+  // ===================
+  // END GET SPECIFIC USER
+  // ===================
+
+  // ===================
+  // ASSIGN LOGGED IN USER IMAGE
+  // ===================
+
+  let userImageUrl;
+
+  if (!current_user?.image) {
+    userImageUrl =
+      "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
+  } else {
+    if (!userImageUrl) {
+      userImageUrl = current_user?.image;
+    }
+  }
+
+  // ===================
+  // END ASSIGN LOGGED IN USER IMAGE
+  // ===================
+
   return (
     <Disclosure as="nav" className="bg-red-600 recco-roboto-text">
       {({ open }) => (
@@ -48,18 +110,18 @@ export default function Example() {
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
                   <a href="/">
-                  <img
-                    className="block lg:hidden h-8 w-auto"
-                    src="../recologo.png"
-                    alt="RECCO"
-                  />
+                    <img
+                      className="block lg:hidden h-8 w-auto"
+                      src="../recologo.png"
+                      alt="RECCO"
+                    />
                   </a>
                   <a href="/">
-                  <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="../recologo.png"
-                    alt="RECCO"
-                  />
+                    <img
+                      className="hidden lg:block h-8 w-auto"
+                      src="../recologo.png"
+                      alt="RECCO"
+                    />
                   </a>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
@@ -69,10 +131,12 @@ export default function Example() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-gray-100',
-                          'px-3 py-2 rounded-md text-sm font-medium'
+                          item.current
+                            ? "bg-gray-900 text-white"
+                            : "text-gray-100",
+                          "px-3 py-2 rounded-md text-sm font-medium"
                         )}
-                        aria-current={item.current ? 'page' : undefined}
+                        aria-current={item.current ? "page" : undefined}
                       >
                         {item.name}
                       </a>
@@ -83,7 +147,6 @@ export default function Example() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
                   <div>
@@ -91,7 +154,7 @@ export default function Example() {
                       <span className="sr-only">Open user menu</span>
                       <img
                         className="h-8 w-8 rounded-full"
-                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                        src={userImageUrl}
                         alt=""
                       />
                     </Menu.Button>
@@ -105,46 +168,52 @@ export default function Example() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    { logged !== "0"
-                    ? 
-                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="logout"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Sign out
-                          </a>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                    :
-
-                    
-                    <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/signup"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Sign Up
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/signin"
-                            className={classNames(active ? 'bg-gray-100' : '', 'block px-4 py-2 text-sm text-gray-700')}
-                          >
-                            Sign In
-                          </a>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
-                    }       
+                    {logged !== "0" ? (
+                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="logout"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Sign out
+                            </a>
+                          )}
+                        </Menu.Item>
+                      </Menu.Items>
+                    ) : (
+                      <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="/signup"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Sign Up
+                            </a>
+                          )}
+                        </Menu.Item>
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              href="/signin"
+                              className={classNames(
+                                active ? "bg-gray-100" : "",
+                                "block px-4 py-2 text-sm text-gray-700"
+                              )}
+                            >
+                              Sign In
+                            </a>
+                          )}
+                        </Menu.Item>
+                      </Menu.Items>
+                    )}
                   </Transition>
                 </Menu>
               </div>
@@ -159,23 +228,24 @@ export default function Example() {
                   as="a"
                   href={item.href}
                   className={classNames(
-                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300',
-                    'px-3 py-2 rounded-md text-sm font-medium'
+                    item.current ? "bg-gray-900 text-white" : "text-gray-300",
+                    "px-3 py-2 rounded-md text-sm font-medium"
                   )}
-                  aria-current={item.current ? 'page' : undefined}
+                  aria-current={item.current ? "page" : undefined}
                 >
                   {item.name}
                 </Disclosure.Button>
               ))}
               <br></br>
-              <AddRecModal /><br></br>
-              <AddCityModal/>
+              <AddRecModal />
+              <br></br>
+              <AddCityModal />
             </div>
           </Disclosure.Panel>
         </>
       )}
     </Disclosure>
-  )
+  );
 }
 
 // import AddFriendModal from './AddFriendModal';
@@ -262,6 +332,5 @@ export default function Example() {
 //       </div>
 //     </nav>
 //   );}
-
 
 // export default NavBar;
