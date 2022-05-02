@@ -12,7 +12,6 @@ if (token !== null) {
 }
 else { var logged_user = { user_id: '0' } }
 let logged = logged_user.user_id
-console.log(logged)
 var user_page = 'user/'+logged
 
 
@@ -51,7 +50,6 @@ export default function Example() {
                   <a href="/">
                   <img
                     className="block lg:hidden h-8 w-auto"
-                    // src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                     src="../recologo.png"
                     alt="RECCO"
                   />
@@ -59,12 +57,10 @@ export default function Example() {
                   <a href="/">
                   <img
                     className="hidden lg:block h-8 w-auto"
-                    // src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
                     src="../recologo.png"
                     alt="RECCO"
                   />
                   </a>
-                  {/* <a href="https://imgbb.com/"><img src="https://i.ibb.co/W3bTRSR/Screen-Shot-2022-04-26-at-5-16-42-PM.png" alt="Screen Shot 2022-04-26 at 5.16.42 PM" border="0"></a><br /><a target='_blank' href='https://imgbb.com/'>upload a pic</a><br /> */}
                 </div>
                 <div className="hidden sm:block sm:ml-6">
                   <div className="flex space-x-4">
@@ -73,8 +69,6 @@ export default function Example() {
                         key={item.name}
                         href={item.href}
                         className={classNames(
-                          // item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                          // 'px-3 py-2 rounded-md text-sm font-medium'
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-100',
                           'px-3 py-2 rounded-md text-sm font-medium'
                         )}
@@ -89,13 +83,6 @@ export default function Example() {
                 </div>
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                {/* <button
-                  type="button"
-                  className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
-                >
-                  <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" />
-                </button> */}
 
                 {/* Profile dropdown */}
                 <Menu as="div" className="ml-3 relative">
