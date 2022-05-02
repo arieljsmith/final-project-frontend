@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage";
 import LocationPage from "./pages/LocationPage";
 import UserProfile from "./pages/UserProfile";
 import Logout from "./pages/Logout";
+import RestaurantDetail from "./pages/RestaurantDetail";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/logout" element={<Logout />} />
       <Route path="/home" element={<Homepage />} />
       <Route path="/location" element={<LocationPage />} />
+      <Route path="/restaurant" element={<RestaurantDetail />} />
       {/* <Route path="/user" element={<UserProfile />} /> */}
       <Route path="/" element={<Homepage />} />
       <Route 
