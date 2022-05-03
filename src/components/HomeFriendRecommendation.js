@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { useState, useEffect } from 'react';
 
 function HomeFriendRecommendation(props) {
-
+    
     let restaurantImageUrl;
 
     if (!props.image) {
@@ -10,9 +11,90 @@ function HomeFriendRecommendation(props) {
         restaurantImageUrl = props.image;
     }
 
+
+    const [isUsersLoading, setIsUsersLoading] = useState(true);
+    const [loadedUsers, setLoadedUsers] = useState([]);
+  
+    // Keeps this fetch request from looping infinitely
+    useEffect(() => {
+        fetch('https://undefined-rest-api.herokuapp.com/api/users/?format=json'
+        ).then(response => {
+            return response.json();
+        }).then(data => {
+            setIsUsersLoading(false);
+            setLoadedUsers(data);
+        });
+    }, []);
+
+    // ===================
+    // STORE IN LOCALSTORAGE
+    // ===================
+
+    useEffect(() => {
+        localStorage.setItem("users", JSON.stringify(loadedUsers))
+    }, [loadedUsers]);
+
+    // ===================
+    // END STORE IN LOCALSTORAGE
+    // ===================
+
+    // ===================
+    // GET SPECIFIC USER
+    // ===================
+
+    let creator_id = props.creator_id
+  
+    function GetSpecificUser(userList) {
+      for (var user of userList) {
+          if (user.id == creator_id) {
+              return user
+          }
+      }
+    }; 
+  
+    let locallySavedUsers = localStorage.getItem("users");
+    let parsedLocSavedUsers = JSON.parse(locallySavedUsers);
+
+    var creator = GetSpecificUser(parsedLocSavedUsers);
+    // const creatorImage = creator.image;
+
+    // ===================
+    // END GET SPECIFIC USER
+    // ===================
+
+    // //====================
+    // // USER IMAGE STUFF
+    // //====================
+
+    let userImageUrl;
+
+    if (!creator?.image) {
+        userImageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
+    } else {
+        if(!userImageUrl) {
+            userImageUrl = creator?.image;
+        }
+    }
+
+    //====================
+    // END USER IMAGE STUFF
+    //====================
+
+    //====================
+    // RETURNS
+    //====================
+  
+    // Displays a temporary loading screen while fetch request is running
+    if (isUsersLoading) {
+        return (
+            <section>
+                <p>Loading...</p>
+            </section>
+        );
+    }
+
     return (
         <div className="relative max-w-2xl m-2 overflow-hidden bg-white rounded-lg shadow-md recco-roboto-text">
-            {/* <button className="absolute right-0 w-auto px-3.5 py-2 mt-2 mr-2 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-white text-amber-500 rounded-full lg:w-auto hover:bg-amber-500 hover:text-white focus:outline-none focus:bg-amber-500 focus:text-white">*</button> */}
             <img className="object-cover w-full h-32" src={restaurantImageUrl} alt="Article" />
 
             <div className="p-6">
@@ -24,7 +106,7 @@ function HomeFriendRecommendation(props) {
                 <div className="mt-4">
                     <div className="flex items-center">
                         <div className="flex items-center">
-                            <img className="object-cover h-10 rounded-full" src="https://images.unsplash.com/photo-1586287011575-a23134f797f9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=48&q=60" alt="Avatar" />
+                            <img className="object-cover h-10 rounded-full" src={userImageUrl} alt="Avatar" />
                             <div>
                                 <p className="mx-3 text-[10px] text-gray-400">Recommended by</p>
                                 <Link className="mx-3"
@@ -40,12 +122,10 @@ function HomeFriendRecommendation(props) {
                 </div>
             </div>
         </div>
-
-        // <div>
-        //     <h3>{props.name}</h3>
-        //     <p>{props.city}</p>
-        // </div>
     );
+    //====================
+    // END RETURNS
+    //====================
 }
     
 export default HomeFriendRecommendation;

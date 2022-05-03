@@ -21,7 +21,6 @@ const AddRecModal = () => {
     axios.get('https://undefined-rest-api.herokuapp.com/api/cities/')
       .then(res => {
         setLoadedCities(res.data);
-        console.log(loadedCities)
       });
   }, [])
 
@@ -32,15 +31,10 @@ const AddRecModal = () => {
   }
   else { var userIn = { userIn_id: '0' } }
   let logged_in = userIn.user_id
-  console.log(logged_in)
 
   const writeCities = loadedCities.filter(city => city.creator_id === logged_in);
   writeCities.sort((a,b) => a.name.localeCompare(b.name))
 
-  console.log(writeCities);
-  console.log(writeCities.map(city => (city.id)));
-
-  console.log(values.city);
 
   const [submitted, setSubmitted] = useState(false);
 
@@ -64,7 +58,6 @@ const AddRecModal = () => {
         city: values.city,
         image: values.image,
       })
-    console.log(values);
     setShowModal(false);
   };
 
@@ -72,13 +65,6 @@ const AddRecModal = () => {
 
   return (
     <>
-      {/* <button
-        className="w-auto px-3.5 py-2 mb-4 text-sm font-medium text-white uppercase transition-colors duration-200 transform bg-rose-600 rounded-full lg:w-auto hover:bg-rose-500 focus:outline-none focus:bg-rose-500"
-        type="button"
-        onClick={() => setShowModal(true)}
-      >
-        Add Recommendation
-      </button> */}
       <a href="#" className="text-gray-100 px-3 py-2 rounded-md text-sm font-medium recco-roboto-text" onClick={() => setShowModal(true)}>Add Recommendation</a>
       {showModal ? (
         <>
@@ -146,7 +132,6 @@ const AddRecModal = () => {
                       <button
                         className="bg-lime-600 hover:bg-lime-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline form-field"
                         type="submit"
-                      // onClick={() => setShowModal(false)}
                       >
                         Add
                       </button>

@@ -36,6 +36,8 @@ function UserProfile() {
       });
   }, []);
 
+
+
   // Displays a temporary loading screen while fetch request is running
   if (isUsersLoading || isRestaurantsLoading) {
       return (
@@ -56,6 +58,18 @@ function UserProfile() {
   } 
 
   let creator = GetSpecificUser(loadedUsers)
+  
+  // USER IMAGE STUFF
+  let userImageUrl;
+
+  if (!creator?.image) {
+      userImageUrl = "https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png";
+  } else {
+      if(!userImageUrl) {
+          userImageUrl = creator?.image;
+      }
+  }
+  // END USER IMAGE STUFF
 
   return (
     <div>
@@ -69,22 +83,22 @@ function UserProfile() {
           >
             &lt;
           </button>
-        <div className="grid place-items-center flex items-center">
+        <div className="grid place-items-center flex items-center m-10">
           
           <img
             className="object-cover h-48 mt-10 mb-4 rounded-full"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQrF3t4HTqY8rjh54a9PrakBAZsJ5gPFv2CQ&usqp=CAU"
+            src={userImageUrl}
             alt="Avatar"
           />
-          <div className="mb-2">
+          <div>
             <a className="text-2xl font-semibold text-gray-700">
               {creator.name}
             </a>
           </div>
           <a>{creator.location}</a>
-          <button className="text-white bg-gray-400 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1">
+          {/* <button className="text-white bg-gray-400 active:bg-yellow-700 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1">
             Follow
-          </button>
+          </button> */}
         </div>
         <div className="">
           <a className="text-2xl font-semibold text-black uppercase lg:text-3xl mt-20 mr-4 mb-8 ml-6 inline lg:ml-24 recco-roboto-text">Recs</a>
