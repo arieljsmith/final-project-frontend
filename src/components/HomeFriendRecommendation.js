@@ -30,9 +30,9 @@ function HomeFriendRecommendation(props) {
     // STORE IN LOCALSTORAGE
     // ===================
 
-    useEffect(() => {
-        localStorage.setItem("users", JSON.stringify(loadedUsers))
-    }, [loadedUsers]);
+    // useEffect(() => {
+    //     localStorage.setItem("users", JSON.stringify(loadedUsers))
+    // }, [loadedUsers]);
 
     // ===================
     // END STORE IN LOCALSTORAGE
@@ -51,12 +51,28 @@ function HomeFriendRecommendation(props) {
           }
       }
     }; 
-  
-    let locallySavedUsers = localStorage.getItem("users");
-    let parsedLocSavedUsers = JSON.parse(locallySavedUsers);
 
-    var creator = GetSpecificUser(parsedLocSavedUsers);
+    // ===================
+    // ASSIGN CREATOR FROM LOCALSTORAGE
+    // ===================
+  
+    // let locallySavedUsers = localStorage.getItem("users");
+    // let parsedLocSavedUsers = JSON.parse(locallySavedUsers);
+
+    // var creator = GetSpecificUser(parsedLocSavedUsers);
+
+    // ===================
+    // END ASSIGN CREATOR FROM LOCALSTORAGE
+    // ===================
+
+    // ===================
+    // ASSIGN CREATOR FROM LOADEDUSERS
+    // ===================
+    var creator = GetSpecificUser(loadedUsers);
     // const creatorImage = creator.image;
+    // ===================
+    // END ASSIGN CREATOR FROM LOADEDUSERS
+    // ===================
 
     // ===================
     // END GET SPECIFIC USER
